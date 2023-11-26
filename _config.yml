@@ -24,3 +24,9 @@ markdown: kramdown
 # exclude:  
 # - .gitignore
 # - CNAME 
+
+header_pages:
+  - about.md
+  - research
+  # - projects.html
+
