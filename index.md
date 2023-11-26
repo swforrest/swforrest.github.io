@@ -17,6 +17,6 @@ Hi, I'm a PhD candidate in Mathematical Sciences at the Queensland University of
 
 [About me](/about)
 
-## My Projects
+## My Research
 
-[List of projects](/projects)
+[Research projects](/research)
