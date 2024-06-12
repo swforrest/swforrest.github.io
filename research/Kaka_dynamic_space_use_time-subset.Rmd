@@ -1,0 +1,1197 @@
+---
+title: "Dynamic space use analysis for kākā at Orokonui Ecosanctuary"
+author: "Scott Forrest"
+date: "`r Sys.Date()`"
+output:
+  html_document: default
+  pdf_document: default
+bibliography: references_20240315.bib
+---
+
+```{r setup, include=FALSE}
+
+knitr::opts_chunk$set(echo = TRUE)
+
+```
+
+
+Import relevant packages and set working directory.
+
+```{r packages}
+#message=FALSE, warning=FALSE
+
+library(tidyverse)
+
+packages <- c("move", "lattice", "purrr", "raster", "sf", "ggpubr", "ggspatial", 
+              "patchwork", "jtools", "MuMIn", "statmod", "furrr", "lubridate", "scales", 
+              "heplots", "MASS", "broom", "gganimate", "gifski", "transformr", "ctmm",
+              "tictoc", "beepr")
+
+walk(packages, require, character.only = T)
+
+options(future.rng.onMisuse = "ignore")
+
+```
+
+Import data and convert to a `move` obect to fit the Brownian Bridge Movement Models (dBBMMs).
+
+```{r import data, message=FALSE}
+
+# create vector of GPS date filenames - this will list any files in the folder 
+# "CSV input data - dd_speed_6", which will be called in the read.csv function below
+GPSfiles <- list.files("CSV input data - dd_speed_6") 
+
+# create a vector for the tag numbers indicating different kākā
+id <- 45505:45514
+
+# import data
+all_tags_data_list <- vector(mode = "list", length = length(GPSfiles))
+# list for move objects
+all_tags_move_list <- vector(mode = "list", length = length(GPSfiles))
+
+# create variables for a bounding box around the study area
+min_id_x <- c()
+max_id_x <- c()
+min_id_y <- c()
+max_id_y <- c()
+
+for(i in 1:length(GPSfiles)){
+  all_tags_data_list[[i]] <- read.csv(paste("CSV input data - dd_speed_6/",
+                                             GPSfiles[[i]], 
+                                             sep = ""))
+  # add id column
+  all_tags_data_list[[i]]$id <- id[i]
+  
+  # convert date to POSIXct
+  all_tags_data_list[[i]]$DateTime <- as.POSIXct(all_tags_data_list[[i]]$DateTime, 
+                                                 tz = "GMT")
+  
+  # first convert to a move object so it can be passed to the dBBMM function
+  all_tags_move_list[[i]] <- move(x = all_tags_data_list[[i]]$lon, 
+                                  y = all_tags_data_list[[i]]$lat, 
+                                  time = all_tags_data_list[[i]]$DateTime, 
+                                  proj = CRS("+proj=longlat +ellps=WGS84"), 
+                                  data = all_tags_data_list[[i]], 
+                                  animal = all_tags_data_list[[i]]$id) %>% 
+    # change to relevant CRS
+    spTransform(., CRS(SRS_string = "EPSG:2193"))
+  
+  # get the minimum x and y values of the data
+  min_id_x[i] <- min(all_tags_move_list[[i]]@coords[,1])
+  max_id_x[i] <- max(all_tags_move_list[[i]]@coords[,1])
+  min_id_y[i] <- min(all_tags_move_list[[i]]@coords[,2])
+  max_id_y[i] <- max(all_tags_move_list[[i]]@coords[,2])
+  
+}
+
+min_x <- min(min_id_x)
+max_x <- max(max_id_x)
+min_y <- min(min_id_y)
+max_y <- max(max_id_y)
+
+```
+
+Create an empty raster for the extent, in the crs of the data, which should be wider than the locations to provide the Brownian bridges with plenty of space. Can be trimmed off later. Create a simple function with preset parameters in the dBBMM model. This could also be passed directly to the chunk below when the dBBMM_function is called. 
+
+```{r dbbmm extent}
+
+# set buffer around the points - required for dBBMM
+# may need to be tweaked depending on the scale of the data
+# it needs to be quite a bit larger than the extent of the data
+buffer <- 25000
+
+ext_dbbmm <- as(extent(min_x - buffer, 
+                       max_x + buffer, 
+                       min_y - buffer,
+                       max_y + buffer), 
+                'SpatialPolygons')
+crs(ext_dbbmm) <- "EPSG:2193"
+ext_raster <- raster::raster(ext_dbbmm, res = 50)
+
+```
+
+In the chunk below we create ODs for temporally overlapping snapshots of the movement trajectory. Be aware that this will take some time to run depending on the amount of data and the window and increment sizes. Reducing the increment size will increase the time and memory requirements. 
+
+It should also be noted that the framework we have presented here is not restricted the the dBBMM utilisation distribution estimation method, and the OD calculation may also be possible with the `amt::rolling_od` (rolling occurrence) function in the 'amt' package [@Signer2019-fi] for example, which is a wrapper around `ctmm::occurrence` [@Fleming2016-ei]. The `for loop` below simply splits up the trajectory into overlapping temporal snapshots, and the space use estimation function in `brownian.bridge.dyn` can be substituted with any other method.
+
+This process will create a list of lists. The top level list is the individual kākā, and the second level list are the ODs of each temporally overlapping snapshot.
+
+Location error in the dBBMM function is the median error from @Forrest2022-is who tested these particular devices. Reference paper for dBBMM method is @Kranstauber2012-fp.
+
+Here we subset by time. For inconsistent GPS fixes a time-subset approach might be preferable (acknowledging that the space use subsets will be from different numbers of points). We create an object called `subset_times_list` to store the time of the first and last locations in the subset for an OD, and then populate with the number of locations that are contained in that subset before fitting the dBBMM to each subset.
+
+```{r sweeping window functions}
+
+# Dynamic space use (DSU) window width (number of locations included in each OD)
+# can be in hours, days, weeks, etc. check the lubridate::period help file for more details
+DSU_window_width <- lubridate::period(30, units = "days") 
+# Dynamic space use (DSU) window increment 
+# (number of locations to move the sweeping window along by)
+# can be in hours, days, weeks, etc. check the seq.POSIXt help file for more details
+DSU_window_increment <- "1 days" 
+
+# dBBMM parameters
+dbbmm_margin <- 3
+dbbmm_window <- 15
+
+# minimum number of locations in each subset
+min_locations <- 100
+
+
+# create a list to store dataframes of the first and last location in each subset
+# this isn't essential but can be useful for checking the subsets
+subset_times_list <- vector(mode = "list", length = length(all_tags_move_list))
+# a copy of the above list but keeping only the data subsets that are used to make to ODs
+subset_times_included_list <- vector(mode = "list", length = length(all_tags_move_list))
+# create an empty list to store the ODs for each individual
+all_tags_subset_dbbmms <- vector(mode = "list", length = length(all_tags_move_list))
+
+
+for (i in 1:length(all_tags_move_list)) {
+  
+  tic()
+  
+  # the time of the first and last location in the full trajectory
+  start_time <- all_tags_move_list[[i]]$DateTime[1]
+  end_time <- all_tags_move_list[[i]]$DateTime[nrow(all_tags_move_list[[i]])]
+  
+  # create a sequence of times for the first and last location in each subset
+  first_subset_time <- seq(start_time, end_time - DSU_window_width, by = DSU_window_increment)
+  last_subset_time <- seq(start_time + DSU_window_width, end_time, by = DSU_window_increment)
+  
+  # create a dataframe to store the first and last location in each subset, 
+  # and then the number of locations in each subset
+  # and indicate if the subset is included in the OD calculation, or skipped due to
+  # an insufficient number of locations
+  subset_times_list[[i]] <- data.frame("subset_n" = 1:length(first_subset_time),
+                                       "first_time" = first_subset_time, 
+                                       "last_time" = last_subset_time,
+                                       "n_locs" = NA,
+                                       "included" = NA)
+  
+  
+  # create a list to store the ODs for each subset,
+  # which is within the all_tags_subset_dbbmms list (a nested listed)
+  all_tags_subset_dbbmms[[i]] <- vector(mode = "list", 
+                                        length = nrow(subset_times_list[[i]]))
+  
+  for(j in 1:nrow(subset_times_list[[i]])){
+    
+    # the locations in the subset (as a move object) that are within the first and last time of the subset,
+    # and will be used to calculate the OD
+    OD_locations <- all_tags_move_list[[i]][which(
+      all_tags_move_list[[i]]$DateTime >= subset_times_list[[i]]$first_time[j] & 
+        all_tags_move_list[[i]]$DateTime <= subset_times_list[[i]]$last_time[j])]
+    
+    # add in the number of locations for that OD subset
+    subset_times_list[[i]][j, "n_locs"] <- nrow(OD_locations)
+    
+    
+    if(nrow(OD_locations) < min_locations) {
+      
+      # if there are not enough locations in the subset to fit the dBBMM, skip to the next subset
+      all_tags_subset_dbbmms[[i]][[j]] <- NA
+      # indicate that the subset wasn't included
+      subset_times_list[[i]][j, "included"] <- 0
+      
+    } else {
+      
+    # fit the dBBMM to the subset of locations
+    # use any occurrence estimator here in the place of the dBBMM
+    all_tags_subset_dbbmms[[i]][[j]] <- brownian.bridge.dyn(OD_locations, 
+                                                            raster = ext_raster, 
+                                                            location.error = 8.35,
+                                                            margin = dbbmm_margin, 
+                                                            window.size = dbbmm_window, 
+                                                            time.step = 12,
+                                                            verbose = FALSE)
+    
+    # indicate that the subset wasn't included
+      subset_times_list[[i]][j, "included"] <- 1
+      
+    }
+    
+  }
+  
+  # exclude the list elements that didn't have enough locations to fit the dBBMM
+  all_tags_subset_dbbmms[[i]] <- 
+    all_tags_subset_dbbmms[[i]][!is.na(all_tags_subset_dbbmms[[i]])]
+  
+  subset_times_included_list[[i]] <- 
+    subset_times_list[[i]][which(subset_times_list[[i]]$included == 1),]
+  
+  print(paste0(sum(subset_times_list[[i]]$included == 1), 
+               " out of ", 
+               nrow(subset_times_list[[i]]) , 
+               " subsets included for individual ", 
+               id[i]))
+  
+  toc()
+
+}
+
+beep(sound = 2)
+
+```
+
+Plotting an example OD and calculating the area
+
+```{r plot dbbmm ODs}
+
+# plot the first OD of the first individual
+plot(all_tags_subset_dbbmms[[1]][[1]] %>% 
+       raster2contour(levels = 0.95) %>% 
+       st_as_sf() %>% 
+       st_polygonize()) 
+
+# calculate the OD area for the first OD of the first individual
+all_tags_subset_dbbmms[[1]][[1]] %>% 
+  raster2contour(levels = 0.95) %>% 
+  st_as_sf() %>% 
+  st_polygonize() %>% 
+  st_area()
+
+```
+
+Plotting all ODs (commented out for knitting as the output is very big)
+
+```{r plot all dbbmm ODs, message=FALSE}
+
+# create a bounding box to trim the ODs by - tune this for a given study area - 
+# doesn't need to be precisely around each OD, just a rough area
+bbox_trim <- st_bbox(c(xmin = min_x, 
+                       xmax = max_x, 
+                       ymin = min_y, 
+                       ymax = max_y), 
+                     crs = 2193)
+
+# plot all ODs for each individual
+for(i in 1:length(all_tags_subset_dbbmms)){
+  map(all_tags_subset_dbbmms[[i]], crop, bbox_trim) %>%
+    map(move::plot, main = paste0("Individual ", id[i]))
+}
+
+```
+
+### Calculate Bhattacharyya's Affinity between ODs
+
+Calculating Bhattacharyya's Affinity between every OD for each individual. This is to create a similarity matrix, similar to the approach of @Kranstauber2020-jw, which allows for the identification of space use patterns.
+
+This for loop calculates the BA for each pair, and creates the correlation plots (similarity matrix) for each individual.
+
+```{r Bhattacharyyas affinity}
+
+# create an empty list to store the correlation plots
+corr.plots <- vector(mode = "list", length = length(all_tags_subset_dbbmms))
+
+ for(k in 1:length(all_tags_subset_dbbmms)) {
+   
+   tic()
+   
+   # pull out the subset of ODs for one individual
+   id_ODs <- all_tags_subset_dbbmms[[k]]
+
+   # create a bounding box to trim the ODs by - tune this for a given study area - 
+   # doesn't need to be precisely around each OD, just a rough area
+  bbox_trim <- st_bbox(c(xmin = min_x, 
+                         xmax = max_x, 
+                         ymin = min_y, 
+                         ymax = max_y), 
+                       crs = 2193)
+  
+  # trim the ODs
+  id_ODs_trimmed <- map(id_ODs, crop, bbox_trim)
+
+  # create an empty vector to store the ODs, which will be turned into a matrix
+  BA <- c()
+
+  for(i in 1:length(id_ODs_trimmed)) {
+    for(j in 1:length(id_ODs_trimmed)) {
+      
+      # calculate the BA between two ODs
+      BA <- c(BA, sum(sqrt(getValues(id_ODs_trimmed[[j]])) * 
+                        sqrt(getValues(id_ODs_trimmed[[i]]))))
+      
+    }
+  }
+  
+  index1 <- rep(1:length(id_ODs_trimmed), 
+                each = length(id_ODs_trimmed))
+  
+  index2 <- rep(1:length(id_ODs_trimmed), 
+                each = length(id_ODs_trimmed))
+  
+  # calculate the times of the ODs for the plotting
+  mean.time <- .POSIXct(rep(NA, length(id_ODs)))
+  min.time <- .POSIXct(rep(NA, length(id_ODs)))
+  max.time <- .POSIXct(rep(NA, length(id_ODs)))
+  
+  for (i in 1:length(id_ODs)) {
+    
+    mean.time[[i]] <- mean(id_ODs[[i]]@DBMvar@timestamps)
+    min.time[[i]] <- min(id_ODs[[i]]@DBMvar@timestamps)
+    max.time[[i]] <- max(id_ODs[[i]]@DBMvar@timestamps)
+  
+  }
+  
+  # create a data frame of the BA and the times for each of the BA comparisons
+  mean.time1 <- rep(mean.time, each = length(id_ODs_trimmed))
+  mean.time2 <- rep(mean.time, length(id_ODs_trimmed))
+  
+  min.time1 <- rep(min.time, each = length(id_ODs_trimmed))
+  min.time2 <- rep(min.time, length(id_ODs_trimmed))
+  
+  max.time1 <- rep(max.time, each = length(id_ODs_trimmed))
+  max.time2 <- rep(max.time, length(id_ODs_trimmed))
+  
+  BA_df <- data.frame(index1, min.time1, mean.time1, max.time1, 
+                      index2, min.time2, mean.time2, max.time2, BA)
+  
+  # save the plots in a list but don't plot them yet
+  corr.plots[[k]] <- BA_df %>% ggplot(aes(x = mean.time1, y = mean.time2, 
+                                          colour = BA)) +
+    geom_point(size = 10, shape = 15) +
+    scale_x_datetime("2020/2021", labels = date_format("%b")) +
+    scale_y_datetime("2020/2021", labels = date_format("%b")) +
+    # use the minimum BA value across all individuals for the minimum of the colour scale
+    scale_colour_viridis_c(option = "B", limits = c(0.39, 1),  direction = -1) + 
+    coord_fixed() +
+    theme_classic() +
+    theme(legend.title.align = 0.5,
+          legend.spacing.y = unit(0.5, "cm"),
+          axis.title.y = element_text(margin = margin(r = 10)), 
+          axis.title.x = element_text(margin = margin(t = 10)))
+  
+  toc()
+
+ }
+
+beep(sound = 2)
+
+```
+
+
+Check the minimum BA for each individual.
+
+```{r min BA}
+
+for(i in 1:length(all_tags_subset_dbbmms)) {
+  print(min(corr.plots[[i]]$data$BA))
+}
+
+```
+
+Plot the Bhattacharyya's Affinity (BA) similarity matrices for each individual.
+
+**Caption from manuscript:**
+Similarity matrices of space use calculated with Bhattacharyya’s Affinity (BA) between all ODs for each individual throughout the study period. Darker values indicate higher similarity and lighter values indicate lower similarity. The brighter colours of panels A and D indicate the dissimilarity between the ODs of the juvenile individuals, which was largely due to positional changes of the OD, rather than expansion and contraction .
+
+```{r plot BA matrices}
+
+for(i in 1:length(all_tags_move_list)) {
+  print(corr.plots[[i]])
+}
+
+
+# set the filetypes to save the plots in
+filetypes <- c("pdf", "tiff", "jpeg", "png")
+
+# save objects in multiple filetypes
+for(j in 1:10) {
+
+  for(i in 1:length(filetypes)){
+
+    ggsave(corr.plots[[j]],
+
+           filename = paste0(
+             "Graphical outputs/dynamic space use/correlation.plots240_6_id",
+             j, "_", Sys.Date(), ".",
+             filetypes[i]),
+
+           width = 160,
+           height = 120,
+           units = "mm",
+           dpi = 800)
+
+  }
+}
+
+```
+
+
+Add the correlation plots to a single plot for the manuscript.
+
+```{r BA plot for manuscript}
+
+# for all BA similarity matrices
+
+# patchwork <- corr.plots[[1]] + corr.plots[[2]] + corr.plots[[3]] + 
+#   corr.plots[[4]] + corr.plots[[5]] + corr.plots[[6]] + corr.plots[[7]] + 
+#   corr.plots[[8]] + corr.plots[[9]] + corr.plots[[10]] + 
+#   plot_layout(guides = 'collect', nrow = 2)
+
+# omitting the final BA similarity matrix for clarity
+
+patchwork <- corr.plots[[1]] + corr.plots[[2]] + corr.plots[[3]] + 
+  corr.plots[[4]] + corr.plots[[5]] + corr.plots[[6]] + corr.plots[[7]] + 
+  corr.plots[[8]] + corr.plots[[9]] + 
+  plot_layout(guides = 'collect', nrow = 3)
+
+for (i in c(1:3, 5:9)) {
+patchwork[[i]] <- patchwork[[i]] + theme(axis.title.y = element_blank())
+}
+
+for(i in c(1:6,7,9)){
+  patchwork[[i]] <- patchwork[[i]] + theme(axis.title.x = element_blank())
+}
+
+patchwork + plot_annotation(tag_levels = 'A')
+
+# plotting with different file types
+for(i in 1:length(filetypes)){
+
+  ggsave(filename = paste0("Graphical outputs/dynamic space use/",
+                           "all_tags_240_6_square_BA_similarity_matrix",
+                           "_", Sys.Date(), ".",
+                           filetypes[i]),
+         width = 160,
+         height = 120,
+         units = "mm",
+         dpi = 800)
+
+}
+
+```
+
+
+### Occurrence distribution area
+
+Calculate the area of the OD~50~ and OD~95~ isopleths for each individual.
+
+Interpretation of the area of occurrence distributions should be taken carefully however, as occurrence estimators only quantify uncertainty in the movement path, and can be sensitive to the sampling interval and idiosyncrasies of the animal’s movement behaviour (@Alston2022-cj).
+
+```{r OD area}
+
+# create empty objcts to store the areas and times of the ODs
+all_areas_50 <- vector(mode = "list", length = length(all_tags_move_list))
+all_areas_95 <- vector(mode = "list", length = length(all_tags_move_list))
+all_mean_times <- vector(mode = "list", length = length(all_tags_move_list))
+
+# set to parallel processing 
+plan(multisession)
+
+for(i in 1:length(all_tags_move_list)) {
+  
+  tic()
+  
+  dbbmm_areas <- all_tags_subset_dbbmms[[i]] %>% 
+    future_map(., raster2contour, levels = c(0.5,0.95)) %>% 
+    future_map(., st_as_sf) %>% 
+    future_map(., st_polygonize) %>% 
+    future_map(., st_area) 
+
+  # create empty vectors to store OD areas
+  id_od50_areas <- c()
+  id_od95_areas <- c()
+  
+   for (j in 1:length(dbbmm_areas)) {
+     
+     # extract the area of the OD50 and OD95 isopleths as a vector
+     id_od50_areas[j] <- as.numeric(dbbmm_areas[[j]][[1]])
+     id_od95_areas[j] <- as.numeric(dbbmm_areas[[j]][[2]])
+     all_mean_times[[i]][[j]] <- mean(all_tags_subset_dbbmms[[i]][[j]]@DBMvar@timestamps)
+      
+   }
+ 
+ all_areas_50[[i]] <- id_od50_areas
+ all_areas_95[[i]] <- id_od95_areas
+ 
+ toc()
+ 
+}
+
+# return to sequential (normal) processing
+plan(sequential)
+
+beep(sound = 2)
+
+```
+
+### Calcualting OD centroids
+
+This chunk calculates the centroid based on the raster of the OD (and therefore considered the probability values of the OD), rather than on a polygon of the OD95, which does not.
+
+```{r}
+
+centroids_list <- vector(mode = "list", length = length(all_tags_subset_dbbmms))
+
+tic()
+
+for(i in 1:length(all_tags_subset_dbbmms)) {
+  
+  tic()
+  
+  # create dataframes to store the centroid locations
+  centroids_df <- data.frame("id" = id[i],
+                             "index" = numeric(length(all_tags_subset_dbbmms[[i]])),
+                             "x" = numeric(length(all_tags_subset_dbbmms[[i]])),
+                             "y" = numeric(length(all_tags_subset_dbbmms[[i]])))
+  
+  for(j in 1:length(all_tags_subset_dbbmms[[i]])) {
+    
+    centroids_df$index[j] <- j
+
+    dbbmm_xy <- as.data.frame(all_tags_subset_dbbmms[[i]][[j]], xy = TRUE)
+    
+    # Compute the centroid - which averages the x and y coordinates based on the probability values of the OD (as the probability values sum to 1)
+    centroids_df$x[j] <- sum(dbbmm_xy$x * dbbmm_xy$layer) / sum(dbbmm_xy$layer)
+    centroids_df$y[j] <- sum(dbbmm_xy$y * dbbmm_xy$layer) / sum(dbbmm_xy$layer)
+    
+    # plot to check
+    # move::plot(all_tags_subset_dbbmms[[i]][[1]])
+    # points(centroid_x, centroid_y, col = "red", pch = 19)
+
+  }
+  
+  centroids_list[[i]] <- centroids_df
+  
+  toc()
+  
+}
+
+toc()
+
+centroids_all <- do.call(bind_rows, centroids_list)
+
+beep(sound = 2)
+
+```
+
+Calculate the centroid location of the OD~95~ areas using the polygon of the OD95 contour. We recommend using the approach above i. If the OD is multimodal and has separate areas, this code will average the location between them, but there is also an option ('of_largest_polygon = TRUE' in the st_centroid function) to use the centroid location of only the largest area.
+
+```{r OD centroid, warning = FALSE}
+
+# plan(multisession)
+# 
+# all_centroids <- vector(mode = "list", length = length(all_tags_move_list))
+# 
+# for(i in 1:length(all_centroids)) {
+# all_centroids[[i]] <- all_tags_subset_dbbmms[[i]] %>% 
+#   future_map(., raster2contour, levels = 0.95) %>% 
+#   future_map(., st_as_sf) %>% 
+#   future_map(., st_polygonize) %>% 
+#   future_map(., st_centroid)
+# }
+# 
+# all_tags_centX <- vector(mode = "list", length = length(all_tags_move_list))
+# all_tags_centY <- vector(mode = "list", length = length(all_tags_move_list))
+# 
+# 
+# for(i in 1:length(all_centroids)) {
+#   
+#   for(j in 1:length(all_centroids[[i]])){
+#     
+#   all_tags_centX[[i]][[j]] <- st_coordinates(all_centroids[[i]][[j]])[1]
+#   all_tags_centY[[i]][[j]] <- st_coordinates(all_centroids[[i]][[j]])[2]
+#   
+#   }
+# }
+# 
+# plan(sequential)
+
+```
+
+
+Import Orokonui Ecosanctuary fence spatial object to calculate overlap for each OD to assess risk exposure throughout the tracking period.
+
+```{r import fence}
+
+OrokonuiFence <- st_read("mapping/OrokonuiFence.shp")
+
+OrokonuiFence %>% ggplot() +
+  geom_sf() +
+  theme_bw()
+
+sf::st_crs(OrokonuiFence)
+
+```
+
+### Proportion of OD overlap with risk area
+
+In this case it is the inside of Orokonui Ecosanctuary fence (although this could be any area of risk/safety). This is not the proportion of OD~95~ area, but the the proportion of the probability surface (i.e. weighted by the probability), which represents the time spent in that area.
+
+```{r overlap for each OD}
+
+all_tags_inside_overlap <- vector(mode = "list", length = length(all_tags_move_list))
+
+for (i in 1:length(all_tags_subset_dbbmms)){
+  
+  tic()
+  
+  for (j in 1:length(all_tags_subset_dbbmms[[i]])){
+    
+    all_tags_inside_overlap[[i]][[j]] <- cellStats(mask(all_tags_subset_dbbmms[[i]][[j]], 
+                                                        OrokonuiFence), 
+                                                   sum)
+  
+  }
+  
+  toc()
+  
+}
+
+beep(sound = 2)
+
+```
+
+### Creating a data frame that can be used in further in further analyses.
+
+```{r creating data frame}
+
+id <- 05:14
+sex <- c("M", "M", "M", "F", "F", "F", "F", "M", "M", "F")
+age <- c(1, 10, 5, 1, 3, 2, 2, 3, 10, 8)
+age_group <- c(1, 2, 2, 1, 1, 1, 1, 1, 2, 2)
+breeding <- c("N", "N", "N", "N", "Y", "N", "Y", "N", "N", "N")
+
+tag_dfs <- vector(mode = "list", length = length(all_tags_subset_dbbmms))
+
+for (k in 1:length(all_tags_move_list)) {
+
+  tag_dfs[[k]] <- 
+    data.frame("id" = factor(id[k]),
+               "sex" = factor(sex[k]),
+               "age" = age[k],
+               "age_group" = factor(age_group[k]),
+               "breeding" = factor(breeding[k]),
+               "index" = 1:length(all_areas_95[[k]]),
+               "time" = .POSIXct(unlist(all_mean_times[[k]])),
+               "area_50" = all_areas_50[[k]],
+               "area_95" = all_areas_95[[k]],
+               "inside" = unlist(all_tags_inside_overlap[[k]]),
+               "outside" = 1 - unlist(all_tags_inside_overlap[[k]]),
+               "centX" = centroids_list[[k]]$x,
+               "centY" = centroids_list[[k]]$y) %>% 
+      
+                 mutate(area_95_km2 = area_95/1000000,
+                        diff_95 = (area_95-mean(area_95))/mean(area_95),
+                        diff_95_perc = diff_95*100,
+                        time_rounded = round_date(time, unit = "day"))
+
+}
+
+all_tags_df <- bind_rows(tag_dfs)
+
+all_tags_df$age_group <- factor(all_tags_df$age_group, levels = c(1, 2),
+                                labels = c("3 years or younger (n = 6)", 
+                                           "5 years or older (n = 4)"))
+
+all_tags_df %>% summarise(max_diff_95 = max(diff_95_perc), 
+                          min_diff_95 = min(diff_95_perc))
+
+```
+
+Plotting the expansion and contraction of the OD~95~ area, relative to *each individual's* average.
+
+**Caption from manuscript:**
+Percentage difference compared to average OD95 area for each individual kākā tracked at Orokonui Ecosanctuary in Dunedin. Positive values are above average OD95 area compared to the monthly average for that individual, whereas negative values are below average . 
+
+```{r OD area through time}
+
+all_tags_df %>% ggplot(aes(x = time, y = diff_95_perc, colour = sex)) +
+  geom_hline(yintercept = 0, linetype = "dashed") +
+  geom_point(aes(group = id), alpha = 0.5, size = 1) +
+  geom_path(aes(group = id), alpha = 0.5, size = 2) +
+  #geom_smooth(method = "gam", se = T, alpha = 0.25, level = 0.99) +
+  scale_y_continuous(expression("Percentage Difference in OD"[95]*" Area"), limits = c(-100, 150)) +
+  scale_x_datetime("2020/2021", labels = date_format("%b")) +
+  scale_color_viridis_d("Sex", option = "D", direction = 1) +
+  theme_classic()
+
+
+# plotting with different file types
+for(i in 1:length(filetypes)){
+
+  ggsave(filename = paste0("Graphical outputs/dynamic space use/",
+                           "all_tags_increment_area_240_6",
+                           "_", Sys.Date(), ".",
+                           filetypes[i]),
+         width = 160,
+         height = 100,
+         units = "mm",
+         dpi = 800)
+
+}
+
+```
+
+Plot the location changes of the centroid throughout the tracking period, coloured by age. In this plot it is difficult to discern between the two 1 year old individuals, which both move substantially and are both coloured yellow.
+
+```{r drift xy}
+
+drift_xy <- all_tags_df %>% ggplot() + 
+  geom_sf(aes(geometry = geometry), data = OrokonuiFence, fill = "white") +
+  geom_path(aes(x = centX, y = centY, colour = age, group = id), 
+            data = all_tags_df, alpha = 0.95, size = 0.75) + 
+  
+  scale_y_continuous("Latitude", 
+                     breaks = c(-45.77, -45.78, -45.76, -45.75, -45.79)) + 
+  
+  scale_x_continuous("Longitude", 
+                     breaks = c(170.58, 170.60, 170.62), 
+                     limits = c(1411000, 1415000)) +
+  
+  annotation_scale(location = "br") +
+  annotation_north_arrow(location = "tr", width = unit(0.75, "cm"), 
+                         height = unit(1, "cm")) +
+  
+  theme_classic() +
+  theme(legend.title.align = 0.5,
+        legend.spacing.y = unit(0.5, "cm"),
+        axis.title.y = element_text(margin = margin(t = 0, r = 10, b = 0, l = 0)),
+        axis.title.x = element_text(margin = margin(t = 10, r = 0, b = 0, l = 0))) +
+  
+  scale_colour_viridis_c(breaks = c(0,2,4,6,8,10), name = "Age", direction = -1)
+
+
+drift_xy
+
+
+# plotting with different file types
+for(i in 1:length(filetypes)){
+
+  ggsave(drift_xy,
+         filename = paste0("Graphical outputs/dynamic space use/",
+                           "all_tags_increment_drift_xy_age_240_6",
+                           "_", Sys.Date(), ".",
+                           filetypes[i]),
+         width = 160,
+         height = 100,
+         units = "mm",
+         dpi = 800)
+
+}
+
+```
+
+Plot the temporal OD overlap with Orokonui Ecosanctuary. In this case it is the proportion **outside** of the fence, to indicate risk exposure.
+
+```{r}
+
+all_tags_df %>% ggplot(aes(x = time, y = outside, colour = age)) +
+  geom_hline(yintercept = 0, linetype = "dashed") +
+  geom_hline(yintercept = 1, linetype = "dashed") +
+  geom_point(aes(group = id), alpha = 0.5, size = 1) +
+  geom_path(aes(group = id), alpha = 0.5, size = 2) +
+  #geom_smooth(method = "gam", se = T, alpha = 0.25, level = 0.99) +
+  #scale_colour_manual(values = c("orange", "skyblue")) + # name = "Breeding",
+  scale_y_continuous(expression("Proportion of OD outisde of Orokonui Ecosanctuary")) +
+  scale_x_datetime("2020/2021", labels = date_format("%b")) +
+  #scale_color_viridis_d("Individual", option = "C", direction = 1) +
+  scale_colour_viridis_c(breaks = c(0,2,4,6,8,10), name = "Age", direction = -1) +
+  theme_classic()
+
+
+# plotting with different file types
+for(i in 1:length(filetypes)){
+
+  ggsave(filename = paste0("Graphical outputs/dynamic space use/",
+                           "all_tags_increment_overlap_tag_240_6",
+                           "_", Sys.Date(), ".",
+                           filetypes[i]),
+         width = 160,
+         height = 100,
+         units = "mm",
+         dpi = 800)
+
+}
+
+```
+
+### Drift (displacement between successive centroids)
+
+```{r drift}
+
+#create empty vector
+d <- c()
+
+for (i in 1:length(tag_dfs)) {
+  for (j in 1:nrow(tag_dfs[[i]])) {
+    
+    d <- c(d, sqrt((tag_dfs[[i]]$centX[[j]] - 
+                      tag_dfs[[i]]$centX[[max(j-1, 1)]])^2 + 
+                     
+                     (tag_dfs[[i]]$centY[[j]] - 
+                        tag_dfs[[i]]$centY[[max(j-1, 1)]])^2))
+    
+  }
+}
+
+#add to data frame
+all_tags_df$drift <- d
+
+```
+
+Plotting the displacement throughout time. Assessing whether there is a temporal pattern to space use positional changes.
+
+```{r drift through time}
+
+drift_m <- all_tags_df %>% ggplot(aes(x = time, y = drift, colour = age)) +
+  geom_hline(yintercept = 0, linetype = "dashed") +
+  geom_point(aes(group = id), alpha = 0.5, size = 1) +
+  geom_path(aes(group = id), alpha = 0.5, size = 1) +
+  #geom_smooth(method = "gam", se = T, alpha = 0.25, level = 0.99) +
+  #scale_colour_manual(values = c("red", "green")) + # name = "Breeding",
+  scale_y_continuous(expression("OD"[95]*" Centroid Drift (m)")) +
+  scale_x_datetime("2020/2021", labels = date_format("%b")) +
+  scale_colour_viridis_c(breaks = c(0,2,4,6,8,10), name = "Age", direction = -1) +
+  theme_classic() +
+  theme(legend.position = "none")
+
+drift_m
+
+# plotting with different file types
+for(i in 1:length(filetypes)){
+
+  ggsave(drift_m,
+         filename = paste0("Graphical outputs/dynamic space use/",
+                           "all_tags_increment_drift_m_age_240_6",
+                           "_", Sys.Date(), ".",
+                           filetypes[i]),
+         width = 160,
+         height = 100,
+         units = "mm",
+         dpi = 800)
+
+}
+
+```
+
+Combining plots for manuscript.
+
+**Caption from manuscript:** 
+A) Position of the OD95 centroid for each individual kākā throughout the study period, in relation to age (colour – legend to the right). The fence of Orokonui Ecosanctuary is shown in black. The scale bar is in 200m increments and is 1000m in total. B) Drift distance of OD95 centroid between space use increments, there were no discernible temporal trends in space use drift.
+
+```{r drift plot for manuscript}
+
+drift_xy + theme(axis.text.x = element_blank(), axis.text.y = element_blank()) + 
+  drift_m + plot_layout(guides = "collect") + plot_annotation(tag_levels = 'A')
+
+# plotting with different file types
+for(i in 1:length(filetypes)){
+
+  ggsave(filename = paste0("Graphical outputs/dynamic space use/",
+                           "drift_xy_drift_m_240_6",
+                           "_", Sys.Date(), ".",
+                           filetypes[i]),
+         width = 160,
+         height = 70,
+         units = "mm",
+         dpi = 800)
+
+}
+
+```
+
+
+Assessing total and average drift against age. Substantial age-related variation present.
+
+```{r drift per individual}
+
+drift_by_tag <- all_tags_df %>% group_by(id) %>% 
+  summarise(tot_drift = sum(drift), n = n(), ave_drift = sum(drift)/n())
+
+id <- 45505:45514
+sex <- c("M", "M", "M", "F", "F", "F", "F", "M", "M", "F")
+age <- c(1, 10, 5, 1, 3, 2, 2, 3, 10, 8)
+breeding <- c("N", "N", "N", "N", "Y", "N", "Y", "N", "N", "N")
+
+drift_by_tag <- drift_by_tag %>% mutate(sex = sex, age = age)
+
+drift_by_tag %>% ggplot(aes(x = age, y = tot_drift)) +
+  geom_point(size = 2.5, alpha = 0.5) +
+  scale_y_continuous("Total Drift (m)") +
+  scale_x_continuous("Age", breaks = c(1:10)) +
+  theme_classic() +
+  theme(axis.title.y = element_text(margin = margin(r = 10)))
+
+# use average drift as the number of ODs calculated are not equivalent
+drift_by_tag %>% ggplot(aes(x = age, y = ave_drift)) +
+  geom_point(size = 2.5, alpha = 0.5) +
+  scale_y_continuous("Average Drift (m)") +
+  scale_x_continuous("Age", breaks = c(1:10)) +
+  theme_classic() +
+  theme(axis.title.y = element_text(margin = margin(r = 10)))
+
+```
+
+### Drift statistics (GLM)
+
+Fitting the model.
+
+```{r drift stats}
+
+driftglm <- glm(ave_drift ~ age, data = drift_by_tag, family = Gamma(link = "log"))
+
+summary(driftglm)
+AIC(driftglm) # if comparing to other models
+Anova(driftglm)
+anova(driftglm,test="F")
+r.squaredLR(driftglm)
+confint(driftglm)
+
+```
+
+
+Model checking.
+
+```{r drift model checking}
+
+dfun <- function(object) {
+  with(object,sum((weights * residuals^2)[weights > 0])/df.residual)
+}
+
+dfun(driftglm)
+pseudoR2 <- 1 - (driftglm$deviance / driftglm$null.deviance)
+pseudoR2
+
+qr.driftglm <- qresid(driftglm)
+qqnorm(qr.driftglm, las = 1)
+qqline(qr.driftglm)
+
+r<-residuals(driftglm,type="pearson")
+modfit<-fitted(driftglm)
+
+plot(r~modfit, main = "Pearson's Residuals")
+
+par(mfrow=c(1,2))
+
+r = rstandard(driftglm)
+lf <- fitted(driftglm)
+
+plot(lf, r,xlab="Fitted values",ylab="Standardized residual")
+abline(h=0)
+
+h <- hatvalues(driftglm)
+cd <- cooks.distance(driftglm)
+plot(h,cd,xlab="Hat values",ylab="Cook's distance")
+
+par(mfrow=c(1,1))
+
+```
+
+## Plotting the model predictions
+
+**Caption from manuscript:** 
+Average distance between centroids of consecutive OD95 snapshots from the sweeping window approach to quantify space use variability, which is plotted as a function of age. The increments between space use estimations were approximately one day. Larger values indicate that the OD95 centroid changed position more than for smaller values, suggesting positional changes of space use. Line estimated from generalised linear model using Gamma distribution with logarithmic link, which was fitted with age as a predictor. The ribbon is the 95% confidence interval. Pseudo-R2 based on likelihood ratio = 0.82.
+
+```{r drift glm plot}
+
+effect_plot(driftglm, 
+            pred = age, 
+            plot.points = T, 
+            interval = T, 
+            point.size = 2.5, 
+            point.alpha = 0.5) +
+  
+  scale_x_continuous(breaks = c(1:10)) +
+  labs(x = "Age", 
+       y = expression("Average Distance Between OD"[95]*" Centroids (m)")) +
+  theme_classic() +
+  theme(axis.title.y = element_text(margin = margin(r = 10)))
+
+
+# plotting with different file types
+for(i in 1:length(filetypes)){
+
+  ggsave(filename = paste0("Graphical outputs/dynamic space use/",
+                           "ave_drift_glm_gamma_log_240_6",
+                           "_", Sys.Date(), ".",
+                           filetypes[i]),
+         width = 160,
+         height = 100,
+         units = "mm",
+         dpi = 800)
+
+}
+
+```
+
+### Generating OD contours to create animations
+
+The crs wasn't aligning with the Orokonui fence crs, so I have added a line to enforce it back to the New Zealand Transverse Mercator - EPSG:2193.
+
+```{r creating isopleths}
+
+plan(multisession)
+
+all_ODs_50 <- vector(mode = "list", length = length(all_tags_subset_dbbmms))
+all_ODs_75 <- vector(mode = "list", length = length(all_tags_subset_dbbmms))
+all_ODs_90 <- vector(mode = "list", length = length(all_tags_subset_dbbmms))
+all_ODs_95 <- vector(mode = "list", length = length(all_tags_subset_dbbmms))
+
+for(i in 1:length(all_tags_subset_dbbmms)) {
+  
+  tic()
+
+  # get all the desired contours
+  contours <- all_tags_subset_dbbmms[[i]] %>%
+    future_map(., raster2contour, levels = c(0.5, 0.75, 0.90, 0.95)) %>%
+    future_map(., st_as_sf) 
+  
+  # create empty lists for ODs
+  OD50_list <- vector(mode = "list", length = length(all_tags_subset_dbbmms[[i]]))
+  OD75_list <- vector(mode = "list", length = length(all_tags_subset_dbbmms[[i]]))
+  OD90_list <- vector(mode = "list", length = length(all_tags_subset_dbbmms[[i]]))
+  OD95_list <- vector(mode = "list", length = length(all_tags_subset_dbbmms[[i]]))
+  
+  for(j in 1:length(contours)) {
+  
+    # pull out each contour
+    OD50_list[[j]] <- contours[[j]][which(contours[[j]]$level == 0.5),]
+    OD75_list[[j]] <- contours[[j]][which(contours[[j]]$level == 0.75),]
+    OD90_list[[j]] <- contours[[j]][which(contours[[j]]$level == 0.9),]
+    OD95_list[[j]] <- contours[[j]][which(contours[[j]]$level == 0.95),]
+  
+  }
+  
+  all_ODs_50[[i]] <- OD50_list
+  all_ODs_75[[i]] <- OD75_list
+  all_ODs_90[[i]] <- OD90_list
+  all_ODs_95[[i]] <- OD95_list
+
+toc()
+
+}
+
+plan(sequential)
+
+all_ODs_50_bound <- do.call(bind_rows, all_ODs_50)
+all_ODs_75_bound <- do.call(bind_rows, all_ODs_75)
+all_ODs_90_bound <- do.call(bind_rows, all_ODs_90)
+all_ODs_95_bound <- do.call(bind_rows, all_ODs_95)
+
+all_tags_df <- all_tags_df %>% mutate(OD50 = all_ODs_50_bound$geometry,
+                                      OD75 = all_ODs_75_bound$geometry,
+                                      OD90 = all_ODs_90_bound$geometry,
+                                      OD95 = all_ODs_95_bound$geometry)
+
+beep(sound = 2)
+
+```
+
+### Animating space use changes for each individual 
+
+Generating animations for all individuals. The html files on the GitHub repo have the animations, which is at https://github.com/swforrest/Kaka_HR_DynamicSpaceUse)
+
+```{r}
+
+animation_95 <- ggplot() +
+  geom_sf(data = all_tags_df,
+          aes(geometry = OD95, colour = age, group = id)) +
+  # geom_sf(data = all_tags_df,
+  #         aes(geometry = OD90, colour = age, group = id)) +
+  geom_sf(data = all_tags_df,
+          aes(geometry = OD75, colour = age, group = id)) +
+  geom_sf(data = all_tags_df,
+          aes(geometry = OD50, colour = age, group = id)) +
+  scale_color_viridis_c("Age", option = "D", direction = -1, breaks = seq(0,10,2)) +
+  labs(title = paste0("All kākā (n = 10) - ", "{closest_state}")) +
+  transition_states(states = time_rounded, transition_length = 5,
+                    state_length = 1) +
+  shadow_wake(wake_length = 0.1, wrap = FALSE) +
+  geom_sf(data = OrokonuiFence, 
+          aes(geometry = geometry), 
+          colour = "black", fill = "NA") +
+  coord_sf(crs = sf::st_crs(2193)) +
+  theme_bw() +
+  theme(legend.position = "right")
+
+animate(plot = animation_95,
+        fps = 10,
+        detail = 2)
+
+anim_save(filename = paste0("all_kākā_anim", Sys.Date(), ".gif"),
+          animation = last_animation(), 
+          path = paste0("Graphical outputs/dynamic space use"),
+          res = 800)
+
+```
+
+Generating animations for all young individuals (3 years and younger, n = 6).
+
+```{r}
+
+animation_95 <- ggplot() +
+  geom_sf(data = all_tags_df %>% filter(age <= 4),
+          aes(geometry = OD95, colour = id, group = id)) +
+  # geom_sf(data = all_tags_df %>% filter(age <= 4),
+  #         aes(geometry = OD90, colour = id, group = id)) +
+  geom_sf(data = all_tags_df %>% filter(age <= 4),
+          aes(geometry = OD75, colour = id, group = id)) +
+  geom_sf(data = all_tags_df %>% filter(age <= 4),
+          aes(geometry = OD50, colour = id, group = id)) +
+  scale_color_viridis_d(option = "D", direction = 1) +
+  labs(title = paste0("Kākā younger than 4 years (n = 6) - ", "{closest_state}")) +
+  transition_states(states = time_rounded, transition_length = 5,
+                    state_length = 1) +
+  shadow_wake(wake_length = 0.1, wrap = FALSE) +
+  geom_sf(aes(geometry = geometry), data = OrokonuiFence,
+          colour = "black", fill = "NA") +
+  theme_bw() +
+  theme(legend.position = "none")
+
+
+animate(plot = animation_95,
+        fps = 10)
+
+anim_save(filename = paste0("young_kākā_anim", Sys.Date(), ".gif"),
+          animation = last_animation(), 
+          path = paste0("Graphical outputs/dynamic space use"))
+
+```
+
+Generating animations for all older individuals (5 years and older, n = 4).
+
+```{r}
+
+animation_95 <- ggplot() +
+  geom_sf(data = all_tags_df %>% filter(age >= 5),
+          aes(geometry = OD95, colour = id, group = id)) +
+  geom_sf(data = all_tags_df %>% filter(age >= 5),
+  #         aes(geometry = OD90, colour = id, group = id)) +
+  # geom_sf(data = all_tags_df %>% filter(age >= 5),
+          aes(geometry = OD75, colour = id, group = id)) +
+  geom_sf(data = all_tags_df %>% filter(age >= 5),
+          aes(geometry = OD50, colour = id, group = id)) +
+  scale_color_viridis_d(option = "D", direction = 1) +
+  labs(title = paste0("Kākā older than 4 years (n = 4) - ", "{closest_state}")) +
+  transition_states(states = time_rounded, transition_length = 5,
+                    state_length = 1) +
+  shadow_wake(wake_length = 0.1, wrap = FALSE) +
+  geom_sf(aes(geometry = geometry), data = OrokonuiFence,
+          colour = "black", fill = "NA") +
+  theme_bw() +
+  theme(legend.position = "none")
+
+
+animate(plot = animation_95,
+        fps = 10)
+
+anim_save(filename = paste0("old_kākā_anim", Sys.Date(), ".gif"),
+          animation = last_animation(), 
+          path = paste0("Graphical outputs/dynamic space use"))
+
+```
+
+## References
+
+<div id="refs"></div>  
+
+## Session info
+
+```{r session info}
+
+sessionInfo()
+
+```
