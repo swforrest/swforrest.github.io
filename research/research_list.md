@@ -1,3 +1,4 @@
 List of projects:
 
-- [Kākā dynamic space use](/research/Kākā dynamic space use)
+- [Kākā dynamic space use](/research/Kaka_dynamic_space_use_time-subset.html)
+- [Preparing data for step selection analysis](/research/Kaka_dynamic_space_use_time-subset.html)
