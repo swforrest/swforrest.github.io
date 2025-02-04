@@ -1,5 +1,5 @@
 ---
-title: "Home range and dynamic space use reveals age-related differences in risk exposure for reintroduced parrots"
+title: "Predicting fine-scale distributions and emergent spatiotemporal patterns from temporally dynamic step selection simulations"
 collection: research
 category: manuscripts
 permalink: /research/dynamic_space_use
@@ -8,7 +8,7 @@ date: 2024-12-12
 venue: 'Ecography'
 # slidesurl: 'http://academicpages.github.io/files/slides1.pdf'
 # paperurl: 'https://animalbiotelemetry.biomedcentral.com/articles/10.1186/s40317-022-00289-9'
-citation: 'Forrest, S. W., Rodríguez-Recio, M., & Seddon, P. J. (2024). Home range and dynamic space use reveals age-related differences in risk exposure for reintroduced parrots. Conservation Science and Practice, e13119. https://doi.org/10.1111/csp2.13119'
+citation: 'Forrest, S. W., Pagendam, D., Bode, M., Drovandi, C., Potts, J. R., Perry, J., Vanderduys, E., & Hoskins, A. J. (2024). Predicting fine‐scale distributions and emergent spatiotemporal patterns from temporally dynamic step selection simulations. Ecography. https://doi.org/10.1111/ecog.07421'
 ---
 
 **Abstract**
@@ -21,7 +21,7 @@ In this paper we used harmonic terms to estimate temporally dynamic coefficients
 
 ## Animations of hourly distributions ##
 
-The observed buffalo locations for a given hour are shown as the white locations. There are locations from several individual buffalo in this landscape extent.
+The observed buffalo locations for a given hour are shown as the white locations, and the heatmap is the result of running many (dynamic) SSF simulations. There are locations from several individual buffalo in this landscape extent.
 
 ![](images\sim_preds_0p_hourly.gif)
 ![](images\sim_preds_1p_hourly.gif)
@@ -32,7 +32,7 @@ The observed buffalo locations for a given hour are shown as the white locations
 
 We provide a script below is a walkthrough to build intuition around fitting models with harmonic interaction terms (harmonic regression).
 
-[DynSSF_Walkthrough_Harmonics_and_selection_surfaces](_pages\DynamicSSF_Walkthrough_Harmonics_and_selection_surfaces.html)
+[DynSSF_Walkthrough_Harmonics_and_selection_surfaces](files\DynamicSSF_Walkthrough_Harmonics_and_selection_surfaces.html)
 
 For more scripts and data, please visit the GitHub repository:
-[GitHub repo: https://github.com/swforrest/Kaka_HR_DynamicSpaceUse](https://github.com/swforrest/Kaka_HR_DynamicSpaceUse)
+[GitHub repo: https://github.com/swforrest/dynamic_SSF_sims](https://github.com/swforrest/dynamic_SSF_sims)
