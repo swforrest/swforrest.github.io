@@ -22,13 +22,13 @@ repository               : "swforrest/swforrest.github.io"
 author:
   # Biographic information
   avatar           : "headshot.png"
-  name             : "Your Sidebar Name"
-  pronouns         : # example: "she/her"  
+  name             : "Scott Forrest"
+  pronouns         : "he/him"  
   bio              : "Short biography for the left-hand sidebar"
-  location         : "Earth"
-  employer         : "Red Brick University"
+  location         : "Brisbane"
+  employer         : "Queensland University of Technology, CSIRO"
   uri              : # URL
-  email            : "none@example.org" 
+  email            : "scottwforrest@gmail.com" 
 
   # Academic websites
   arxiv            : # URL - Update with the correct link to your profile
