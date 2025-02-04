@@ -37,7 +37,7 @@ author:
   orcid            : "http://orcid.org/0000-0001-9529-0108"
   semantic         : # URL
   pubmed           : # "https://www.ncbi.nlm.nih.gov/pubmed/?term=john+snow"
-  researchgate     : # URL
+  researchgate     : "https://www.researchgate.net/profile/Scott-Forrest?ev=hdr_xprf"
 
   # Repositories and software development
   bitbucket        : # Username - Update with your username on the site
@@ -48,7 +48,7 @@ author:
   stackoverflow    : # User number or user number and name (i.e., use "1" or "1/jeff-atwood")    
 
   # Social media
-  bluesky          : "scottwilliamf.bsky.social" # Replace this with you Bluesky username
+  bluesky          : "scottwilliamf.bsky.social" 
   facebook         : # Username
   flickr           : # Username
   foursquare       : # Username
