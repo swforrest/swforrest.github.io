@@ -23,16 +23,16 @@ In this paper we used harmonic terms to estimate temporally dynamic coefficients
 
 The observed buffalo locations for a given hour are shown as the white locations, and the heatmap is the result of running many (dynamic) SSF simulations. There are locations from several individual buffalo in this landscape extent.
 
-![](images\sim_preds_0p_hourly.gif)
-![](images\sim_preds_1p_hourly.gif)
-![](images\sim_preds_2p_hourly.gif)
-![](images\sim_preds_3p_hourly.gif)
+![](..\images\sim_preds_0p_hourly.gif)
+![](..\images\sim_preds_1p_hourly.gif)
+![](..\images\sim_preds_2p_hourly.gif)
+![](..\images\sim_preds_3p_hourly.gif)
 
 ## Harmonic regression tutorial ##
 
 We provide a script below is a walkthrough to build intuition around fitting models with harmonic interaction terms (harmonic regression).
 
-[DynSSF_Walkthrough_Harmonics_and_selection_surfaces](files\DynamicSSF_Walkthrough_Harmonics_and_selection_surfaces.html)
+[DynSSF_Walkthrough_Harmonics_and_selection_surfaces](..\files\DynamicSSF_Walkthrough_Harmonics_and_selection_surfaces.html)
 
 For more scripts and data, please visit the GitHub repository:
 [GitHub repo: https://github.com/swforrest/dynamic_SSF_sims](https://github.com/swforrest/dynamic_SSF_sims)
