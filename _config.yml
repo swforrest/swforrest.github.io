@@ -21,7 +21,7 @@ repository               : "swforrest/swforrest.github.io"
 #               Additional customization can be done by editing /_includes/author-profile.html
 author:
   # Biographic information
-  avatar           : "headshot.png"
+  avatar           : "headshot.jpg"
   name             : "Scott Forrest"
   pronouns         : "he/him"  
   bio              : "PhD Candidate in Mathematical Sciences"
