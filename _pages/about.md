@@ -11,6 +11,8 @@ I'm currently a PhD candidate in Mathematical Sciences at the Queensland Univers
 
 My career path has been anything but linear! I studied a Bachelor of Engineering (Naval Architecture) with Honours at Flinders University in Adelaide, South Australia and the Australian Maritime College in Launceston, Tasmania. During this degree I thoroughly enjoyed the research endeavour through my Honours project with [Gregor MacFarlane](https://discover.utas.edu.au/gregorm), titled: Ship-Generated Solitons and the Dynamic Vessel Response as a Function of Blockage. You can read the article [here](..\files\FORREST_Scott - BEng (Hons) AMC Journal Article.pdf) and watch a video of the research [here](https://www.youtube.com/watch?v=D14QuUL8x60&ab_channel=ScottForrest).
 
+The process of diving deeply into a topic, receiving valuable mentorship, and exploring the frontier of knowledge ultimately sparked my interest in a scientific career - even at the expense of a likely well-paid engineering job without any further study... 
+
 ##### We used the AMC towing tank to create the specific conditions required to generate soliton waves, and then measured the vessel response under different conditions. The results were interesting and the project was a lot of fun
 ![](/images/solitons.png)
 
@@ -26,7 +28,7 @@ During my PhD in Mathematical Sciences at the Queensland University of Technolog
 ##### The water buffalo were mustered using helicopters and a series of mustering vehicles such as this one. This protocol allows for the buffalo to be captured and released (with a GPS tag) in only a few minutes and reduces the need for anaesthetising the animals.
 ![](/images\DSCF8916.JPG)
 
-The Australian Broadcasting Corporation (ABC) has covered the SpaceCows project in a [news article](https://www.abc.net.au/news/rural/2023-11-19/spacecows-csiro-indigenous-rangers-buffalo-surveillance/103103624) and a [Landline episode](https://www.youtube.com/watch?v=5TIFDJOnDVM&ab_channel=ABCAustralia) (I even make an appearance for about 5 seconds from 2:43!).
+The Australian Broadcasting Corporation (ABC) has covered the SpaceCows project in a [news article](https://www.abc.net.au/news/rural/2023-11-19/spacecows-csiro-indigenous-rangers-buffalo-surveillance/103103624) and a [Landline episode](https://www.youtube.com/watch?v=5TIFDJOnDVM&ab_channel=ABCAustralia) (I make an appearance for about 5 seconds from 2:43!).
 
 
 This work has been published in Ecography and you can read the full paper [here](https://nsojournals.onlinelibrary.wiley.com/doi/10.1111/ecog.07421), or check out the description in the [Research](/research) section of this website.
