@@ -12,7 +12,7 @@ date: 2024-04-12
 venue: 'Conservation Science and Practice'
 # slidesurl: 'http://academicpages.github.io/files/slides1.pdf'
 # paperurl: 'https://animalbiotelemetry.biomedcentral.com/articles/10.1186/s40317-022-00289-9'
-citation: 'Forrest, S. W., Rodríguez-Recio, M., & Seddon, P. J. (2024). Home range and dynamic space use reveals age-related differences in risk exposure for reintroduced parrots. Conservation Science and Practice, e13119. https://doi.org/10.1111/csp2.13119'
+citation: 'Forrest, S. W., Rodriguez-Recio, M., & Seddon, P. J. (2024). Home range and dynamic space use reveals age-related differences in risk exposure for reintroduced parrots. Conservation Science and Practice, e13119. https://doi.org/10.1111/csp2.13119'
 ---
 
 **Abstract**
