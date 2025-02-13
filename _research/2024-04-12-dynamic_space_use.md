@@ -3,16 +3,16 @@ title: "Home range and dynamic space use reveals age-related differences in risk
 collection: research
 category: manuscripts
 permalink: /research/dynamic_space_use
-excerpt: 'Individual-level differences in animal spatial behavior can lead to differential exposure to risk. We assessed the risk-exposure of a reintroduced population of kākā (Nestor meridionalis) in a fenced reserve in New Zealand by GPS tracking 10 individuals and comparing the proportion of each individual's home range beyond the reserve's fence in relation to age, sex, and fledging origin. To estimate dynamic space use, we used a sweeping window framework to estimate occurrence distributions (ODs) from temporally overlapping snapshots. For each OD, we calculated the proportion outside the reserve's fence to assess temporal risk exposure, and the area, centroid, and overlap to represent the behavioral pattern of space use. Home range area declined significantly and consistently with age, and the space use of juvenile kākā was more dynamic, particularly in relation to locational changes of space use. The wider-ranging and more dynamic behavior of younger kākā resulted in more time spent outside the reserve, which aligned with a higher number of incidental mortality observations. Quantifying both home range and dynamic space use is an effective approach to assess risk exposure, which can provide guidance for management interventions. We also emphasize the dynamic space use approach, which is flexible and can provide insights into a species' spatial ecology.
+excerpt: 'Individual-level differences in animal spatial behavior can lead to differential exposure to risk. We assessed the risk-exposure of a reintroduced population of kākā (Nestor meridionalis) in a fenced reserve in New Zealand by GPS tracking 10 individuals and comparing the proportion of each individual''s home range beyond the reserve''s fence in relation to age, sex, and fledging origin. To estimate dynamic space use, we used a sweeping window framework to estimate occurrence distributions (ODs) from temporally overlapping snapshots. For each OD, we calculated the proportion outside the reserve''s fence to assess temporal risk exposure, and the area, centroid, and overlap to represent the behavioral pattern of space use. Home range area declined significantly and consistently with age, and the space use of juvenile kākā was more dynamic, particularly in relation to locational changes of space use. The wider-ranging and more dynamic behavior of younger kākā resulted in more time spent outside the reserve, which aligned with a higher number of incidental mortality observations. Quantifying both home range and dynamic space use is an effective approach to assess risk exposure, which can provide guidance for management interventions. We also emphasize the dynamic space use approach, which is flexible and can provide insights into a species'' spatial ecology.
 
-![](..\images\all_ud_spatial_gif_20221115.gif)
+![](../images/all_ud_spatial_gif_20221115.gif)
 
 '
 date: 2024-04-12
 venue: 'Conservation Science and Practice'
 # slidesurl: 'http://academicpages.github.io/files/slides1.pdf'
 # paperurl: 'https://animalbiotelemetry.biomedcentral.com/articles/10.1186/s40317-022-00289-9'
-citation: 'Forrest, S. W., Rodríguez-Recio, M., & Seddon, P. J. (2024). Home range and dynamic space use reveals age-related differences in risk exposure for reintroduced parrots. Conservation Science and Practice, e13119. https://doi.org/10.1111/csp2.13119'
+citation: 'Forrest, S. W., Rodriguez-Recio, M., & Seddon, P. J. (2024). Home range and dynamic space use reveals age-related differences in risk exposure for reintroduced parrots. Conservation Science and Practice, e13119. https://doi.org/10.1111/csp2.13119'
 ---
 
 **Abstract**
