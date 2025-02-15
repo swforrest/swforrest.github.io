@@ -1,13 +1,39 @@
 project:
   type: website
+  output-dir: docs
+
+execute:
+  freeze: auto
 
 website:
   title: "Scott Forrest"
+
   navbar:
     left:
-      - href: index.qmd
-        text: Home
+      - text: Home
+        href: index.qmd
       - about.qmd
+      - text: Research
+        href: research.qmd
+      - text: Teaching and Workshops
+        href: teaching.qmd
+      - text: Talks
+        href: talks.qmd
+      - text: Blog
+        href: blog.qmd
+      - text: CV
+        href: cv.qmd
+
+    right: 
+      - icon: github
+        href: https://github.com/swforrest/deepSSF
+      - icon: envelope-at-fill
+        href: mailto:scottwforrest@gmail.com
+
+  sidebar:
+      - title: Research
+        style: floating
+        contents: research
 
 format:
   html:

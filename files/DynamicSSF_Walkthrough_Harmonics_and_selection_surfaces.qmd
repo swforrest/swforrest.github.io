@@ -4,11 +4,11 @@ author: "Scott Forrest"
 date: "`r Sys.Date()`"
 execute: 
   cache: false
-bibliography: references.bib
+bibliography: ../references.bib
 toc: true
 format: 
   html:
-    self-contained: true
+    # self-contained: true
     code-fold: true
     code-tools: true
     df-print: paged
@@ -202,7 +202,7 @@ Importing buffalo data for model fitting, and creating harmonic terms using the 
 
 ```{r}
 
-buffalo_data_all <- read_csv("outputs/buffalo_parametric_popn_covs_GvM_10rs_2024-09-04.csv")
+buffalo_data_all <- read_csv("data_for_scripts/buffalo_ssf_10rs_2024-09-04.csv")
 
 buffalo_data_all <- buffalo_data_all %>% 
   mutate(t1_ = lubridate::with_tz(buffalo_data_all$t1_, tzone = "Australia/Darwin"),
@@ -405,12 +405,6 @@ As we have already fitted the model, we will load it here, but if the model_fit 
 
 ```{r twostep model fit 2p}
 
-if(file.exists("outputs/model_twostep_2p_harms_dry.rds")) {
-  
-  model_twostep_2p_harms <- readRDS("outputs/model_twostep_2p_harms_dry.rds")
-  
-} else {
-
   tic()
   model_twostep_2p_harms <- Ts.estim(formula = formula_twostep,
            data = buffalo_data_scaled_2p,
@@ -418,13 +412,6 @@ if(file.exists("outputs/model_twostep_2p_harms_dry.rds")) {
            D = "UN(1)",
            itermax = 10000)
   toc()
-  
-  # save model object
-  saveRDS(model_twostep_2p_harms, file = "outputs/model_twostep_2p_harms_dry.rds")
-  
-  beep(sound = 2)
-
-}
 
 ```
 

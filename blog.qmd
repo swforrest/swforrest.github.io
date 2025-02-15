@@ -1,0 +1,6 @@
+---
+title: "Blog"
+format: html
+---
+
+To the left are some less formal items that don't fit in the other categories.
