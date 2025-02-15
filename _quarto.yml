@@ -2,7 +2,7 @@ project:
   type: website
 
 website:
-  title: "swforrest.github.io"
+  title: "Scott Forrest"
   navbar:
     left:
       - href: index.qmd
@@ -15,6 +15,4 @@ format:
       - yeti
     css: styles.css
     toc: true
-
-
 
