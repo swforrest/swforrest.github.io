@@ -29,6 +29,8 @@ website:
         href: https://github.com/swforrest/deepSSF
       - icon: envelope-at-fill
         href: mailto:scottwforrest@gmail.com
+      - icon: linkedin
+        href: https://www.linkedin.com/in/swforrest/
 
   sidebar:
       - title: Research
