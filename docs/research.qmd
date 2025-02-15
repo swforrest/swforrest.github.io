@@ -1,6 +1,0 @@
----
-title: "Research"
-format: html
----
-
-Here's an overview of some research projects that I have been involved with, mostly linking to published papers.

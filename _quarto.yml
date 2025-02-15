@@ -12,7 +12,7 @@ website:
     left:
       - text: Home
         href: index.qmd
-      - about.qmd
+      # - about.qmd
       - text: Research
         href: research.qmd
       - text: Teaching and Workshops
@@ -34,6 +34,8 @@ website:
       - title: Research
         style: floating
         contents: research
+      - title: Teaching
+        contents: teaching
 
 format:
   html:
