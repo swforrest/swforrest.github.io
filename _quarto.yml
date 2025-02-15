@@ -10,7 +10,7 @@ website:
 
   navbar:
     left:
-      - text: Home
+      - text: "Home"
         href: index.qmd
       # - about.qmd
       - text: "Research"
@@ -21,7 +21,7 @@ website:
         href: talks.qmd
       - text: "Blog"
         href: blog.qmd
-      - text: CV
+      - text: "CV"
         href: cv.qmd
 
     right: 
