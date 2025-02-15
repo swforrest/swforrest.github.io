@@ -37,15 +37,15 @@ website:
         style: floating
         contents: 
           - research.qmd
-          - research/*
+          - auto: research
       - title: "Teaching and Workshops"
         contents: 
           - teaching.qmd
-          - teaching/*
+          - auto: teaching
       - title: "Blog"
         contents: 
           - blog.qmd
-          - posts/*
+          - auto: posts
 
 format:
   html:
