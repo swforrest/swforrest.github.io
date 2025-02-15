@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -132,29 +166,15 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>I’m currently a PhD candidate in Mathematical Sciences at the Queensland University of Technology (QUT) in Brisbane, Australia, and I am researching animal movement methods and applications. In my research I have explored space use and home range approaches, some hidden Markov modelling, and step selection functions and their extensions, and I am also interested in the application of machine learning to ecological problems. I work at the interface between developing methodology and applications to scientific and conservation questions, and I am fascinated by the decision-making processes that lead to animal movement, from the level of neurobiology to population dynamics.</p>
-<p>My career path has been anything but linear! I studied a Bachelor of Engineering (Naval Architecture) with Honours at Flinders University in Adelaide, South Australia and the Australian Maritime College in Launceston, Tasmania. During this degree I thoroughly enjoyed the research endeavour through my Honours project with <a href="https://discover.utas.edu.au/gregorm">Gregor MacFarlane</a>, titled: Ship-Generated Solitons and the Dynamic Vessel Response as a Function of Blockage. You can read the article <a href="..\files\FORREST_Scott - BEng (Hons) AMC Journal Article.pdf">here</a> and watch a video of the research <a href="https://www.youtube.com/watch?v=D14QuUL8x60&amp;ab_channel=ScottForrest">here</a>.</p>
-<p>The process of diving deeply into a topic, receiving valuable mentorship, and exploring the frontier of knowledge ultimately sparked my interest in a scientific career - even at the expense of a likely well-paid engineering job without any further study…</p>
-<section id="we-used-the-amc-towing-tank-to-create-the-specific-conditions-required-to-generate-soliton-waves-and-then-measured-the-vessel-response-under-different-conditions.-the-results-were-interesting-and-the-project-was-a-lot-of-fun" class="level5">
-<h5 class="anchored" data-anchor-id="we-used-the-amc-towing-tank-to-create-the-specific-conditions-required-to-generate-soliton-waves-and-then-measured-the-vessel-response-under-different-conditions.-the-results-were-interesting-and-the-project-was-a-lot-of-fun">We used the AMC towing tank to create the specific conditions required to generate soliton waves, and then measured the vessel response under different conditions. The results were interesting and the project was a lot of fun</h5>
-<p><img src=".\images/solitons.png" class="img-fluid"></p>
-<p>Following my Honours degree I volunteered in the USA with Montana Fish, Wildlife and Parks with the Wolf Program, which led me towards a Master of Science in Wildlife Management at the University of Otago. For my MSc thesis with <a href="https://www.otago.ac.nz/zoology/staff/professor-phil-seddon">Phil Seddon</a>, <a href="https://www.otago.ac.nz/zoology/staff/associate-professor-mike-paulin">Mike Paulin</a> and <a href="https://scholar.google.com/citations?user=nb72jnQAAAAJ&amp;hl=en">Mariano Rodríguez Recio</a>, we GPS-tracked kākā (<em>Nestor meridionalis</em>) in Orokonui Ecosanctuary, Dunedin, New Zealand. We assessed their space use and resource selection (via step selection functions), and how that changed throughout time. There were clear age-related patterns of both space use and resource selection, which correlated with higher mortality observations for younger kākā. The full thesis can be found <a href="https://ourarchive.otago.ac.nz/esploro/outputs/graduate/Space-use-and-resourceselection-of-the/9926480331601891">here</a>. The space use analyses has been published in Conservation Science and Practice and you can read the full paper <a href="https://conbio.onlinelibrary.wiley.com/doi/10.1111/csp2.13119">here</a>, or check out the description in the <a href=".\research">Research</a> section of this website.</p>
-</section>
-<section id="we-used-a-sweeping-window-framework-to-assess-how-kākā-space-use-changed-throughout-time-and-how-that-differed-between-individuals-of-varying-age." class="level5">
-<h5 class="anchored" data-anchor-id="we-used-a-sweeping-window-framework-to-assess-how-kākā-space-use-changed-throughout-time-and-how-that-differed-between-individuals-of-varying-age.">We used a sweeping window framework to assess how kākā space use changed throughout time, and how that differed between individuals of varying age.</h5>
-<p><img src=".\images/all_ud_spatial_gif_20221115.gif" class="img-fluid"></p>
-<p>We also assessed how the GPS devices that we used, which were <a href="https://www.lotek.com/products/pinpoint-gps-vhf/">Lotek PinPoint GPS VHF tags</a> that used the SWIFT-fix snapshot algorithm were affected by vegetation and topography. This work was published in Animal Biotelemetry and you can read the full paper <a href="https://animalbiotelemetry.biomedcentral.com/articles/10.1186/s40317-022-00289-9">here</a>, or check out the description in the <a href=".\research">Research</a> section of this website.</p>
-<p>During my PhD in Mathematical Sciences at the Queensland University of Technology in collaboration with the Commonwealth Scientific and Industrial Research Organisation (CSIRO) my supervisors and collaborators and I have delved further into step selection functions, particularly in relation to incorporating fine-scale temporal dynamics and using alternative approaches to represent the step selection process. We applied these developments to water buffalo, which are an introduced and damaging species in northern Australia. CSIRO has led a project called ‘SpaceCows’, which has involved the data collection, analysis and management advice for water buffalo in the Northern Territory and feral cattle in Cape York, Queensland. I was lucky enough to head out and assist with the catching of water buffalo in the Northern Territory, which was quite a thrilling experience!</p>
-</section>
-<section id="the-water-buffalo-were-mustered-using-helicopters-and-a-series-of-mustering-vehicles-such-as-this-one.-this-protocol-allows-for-the-buffalo-to-be-captured-and-released-with-a-gps-tag-in-only-a-few-minutes-and-reduces-the-need-for-anaesthetising-the-animals." class="level5">
-<h5 class="anchored" data-anchor-id="the-water-buffalo-were-mustered-using-helicopters-and-a-series-of-mustering-vehicles-such-as-this-one.-this-protocol-allows-for-the-buffalo-to-be-captured-and-released-with-a-gps-tag-in-only-a-few-minutes-and-reduces-the-need-for-anaesthetising-the-animals.">The water buffalo were mustered using helicopters and a series of mustering vehicles such as this one. This protocol allows for the buffalo to be captured and released (with a GPS tag) in only a few minutes and reduces the need for anaesthetising the animals.</h5>
-<p><img src=".\images\DSCF8916.JPG" class="img-fluid"></p>
-<p>The Australian Broadcasting Corporation (ABC) has covered the SpaceCows project in a <a href="https://www.abc.net.au/news/rural/2023-11-19/spacecows-csiro-indigenous-rangers-buffalo-surveillance/103103624">news article</a> and a <a href="https://www.youtube.com/watch?v=5TIFDJOnDVM&amp;ab_channel=ABCAustralia">Landline episode</a> (I make an appearance for about 5 seconds from 2:43!).</p>
-<p>This work has been published in Ecography and you can read the full paper <a href="https://nsojournals.onlinelibrary.wiley.com/doi/10.1111/ecog.07421">here</a>, or check out the description in the <a href=".\research">Research</a> section of this website.</p>
-<p>Some examples of the research that I have been involved with are shown in the <a href=".\research">Research</a> section of this website.</p>
+<p>About this site</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2</code></pre>
+</div>
+</div>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
