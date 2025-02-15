@@ -4,7 +4,11 @@
     "href": "teaching.html",
     "title": "Teaching",
     "section": "",
-    "text": "I have been involved with various teaching throughout my time as a postgrad. I have been tutored or been a Teaching Fellow in Animal Biology, Ecology, Ecological Statistics, and Computational Mathematics.\nClick on the tabs to the left to see more of a description about each role."
+    "text": "I have been involved with various teaching throughout my time as a postgrad. I have been tutored or been a Teaching Fellow in Animal Biology, Ecology, Ecological Statistics, and Computational Mathematics.\nClick on the tabs to the left to see more of a description about each role.",
+    "crumbs": [
+      "Teaching and Workshops",
+      "Teaching"
+    ]
   },
   {
     "objectID": "talks.html",
@@ -18,44 +22,28 @@
     "href": "research/2024_dynamic_ssf.html",
     "title": "Dynamic SSF",
     "section": "",
-    "text": "In this paper we used harmonic terms to estimate temporally dynamic coefficients from step selection models, from which we simulated animal movement trajectories. The simulations with temporal dynamics gave informative hourly predictions of expected buffalo distribution (animations below), and also gave more accurate long-term predictions.",
-    "crumbs": [
-      "Research",
-      "Dynamic SSF"
-    ]
+    "text": "In this paper we used harmonic terms to estimate temporally dynamic coefficients from step selection models, from which we simulated animal movement trajectories. The simulations with temporal dynamics gave informative hourly predictions of expected buffalo distribution (animations below), and also gave more accurate long-term predictions."
   },
   {
     "objectID": "research/2024_dynamic_ssf.html#animations-of-hourly-distributions",
     "href": "research/2024_dynamic_ssf.html#animations-of-hourly-distributions",
     "title": "Dynamic SSF",
     "section": "Animations of hourly distributions",
-    "text": "Animations of hourly distributions\nThe observed buffalo locations for a given hour are shown as the white locations, and the heatmap is the result of running many (dynamic) SSF simulations. There are locations from several individual buffalo in this landscape extent.",
-    "crumbs": [
-      "Research",
-      "Dynamic SSF"
-    ]
+    "text": "Animations of hourly distributions\nThe observed buffalo locations for a given hour are shown as the white locations, and the heatmap is the result of running many (dynamic) SSF simulations. There are locations from several individual buffalo in this landscape extent."
   },
   {
     "objectID": "research/2024_dynamic_ssf.html#harmonic-regression-tutorial",
     "href": "research/2024_dynamic_ssf.html#harmonic-regression-tutorial",
     "title": "Dynamic SSF",
     "section": "Harmonic regression tutorial",
-    "text": "Harmonic regression tutorial\nWe provide a script below is a walkthrough to build intuition around fitting models with harmonic interaction terms (harmonic regression).\nDynSSF_Walkthrough_Harmonics_and_selection_surfaces\nFor more scripts and data, please visit the GitHub repository: GitHub repo: https://github.com/swforrest/dynamic_SSF_sims\nCheck out the full paper here",
-    "crumbs": [
-      "Research",
-      "Dynamic SSF"
-    ]
+    "text": "Harmonic regression tutorial\nWe provide a script below is a walkthrough to build intuition around fitting models with harmonic interaction terms (harmonic regression).\nDynSSF_Walkthrough_Harmonics_and_selection_surfaces\nFor more scripts and data, please visit the GitHub repository: GitHub repo: https://github.com/swforrest/dynamic_SSF_sims\nCheck out the full paper here"
   },
   {
     "objectID": "research/2022-moving-wildlife-forward.html",
     "href": "research/2022-moving-wildlife-forward.html",
     "title": "Testing Snapshot GPS Devices",
     "section": "",
-    "text": "Description\nBefore we tracked kākā (Nestor meridionalis) with GPS devices, we wanted to assess the accuracy of the devices under varying canopy cover and topographic conditions, and assess the relationship between the number of satellites that the ephemeris information was captured from and the Horizontal Dilution of Precision (HDOP).\nThe devices were Lotek GPS VHF devices with SWIFT fixes, which is a snapshot algorithm. This means that instead of processing the satellite information (ephermis) on-board, it is stored for post-processing, saving battery during deployment.\n A kākā with a Lotek GPS VHF device with the SWIFT fix algorithm. We tracked 10 kākā for 5-6 months. Photo: Charlotte Patterson.\nGitHub repo: https://github.com/swforrest/SWIFT-GPS-Test\nCheck out the full paper here",
-    "crumbs": [
-      "Research",
-      "Testing Snapshot GPS Devices"
-    ]
+    "text": "Description\nBefore we tracked kākā (Nestor meridionalis) with GPS devices, we wanted to assess the accuracy of the devices under varying canopy cover and topographic conditions, and assess the relationship between the number of satellites that the ephemeris information was captured from and the Horizontal Dilution of Precision (HDOP).\nThe devices were Lotek GPS VHF devices with SWIFT fixes, which is a snapshot algorithm. This means that instead of processing the satellite information (ephermis) on-board, it is stored for post-processing, saving battery during deployment.\n A kākā with a Lotek GPS VHF device with the SWIFT fix algorithm. We tracked 10 kākā for 5-6 months. Photo: Charlotte Patterson.\nGitHub repo: https://github.com/swforrest/SWIFT-GPS-Test\nCheck out the full paper here"
   },
   {
     "objectID": "files/DynamicSSF_Walkthrough_Harmonics_and_selection_surfaces.html",
@@ -132,7 +120,10 @@
     "href": "blog.html",
     "title": "Blog",
     "section": "",
-    "text": "To the left are some less formal items that don’t fit in the other categories."
+    "text": "To the left are some less formal items that don’t fit in the other categories.",
+    "crumbs": [
+      "Blog"
+    ]
   },
   {
     "objectID": "about.html",
@@ -153,35 +144,30 @@
     "href": "index.html",
     "title": "Scott Forrest",
     "section": "",
-    "text": "I’m currently a PhD candidate in Mathematical Sciences at the Queensland University of Technology (QUT) in Brisbane, Australia, and I am researching animal movement methods and applications. In my research I have explored space use and home range approaches, some hidden Markov modelling, and step selection functions and their extensions, and I am also interested in the application of machine learning to ecological problems. I work at the interface between developing methodology and applications to scientific and conservation questions, and I am fascinated by the decision-making processes that lead to animal movement, from the level of neurobiology to population dynamics.\nBefore getting into ecology, and the methods that underlie it, I studied a Bachelor of Engineering (Naval Architecture) with Honours at Flinders University in Adelaide, South Australia and the Australian Maritime College in Launceston, Tasmania. During this degree I thoroughly enjoyed the research endeavour through my Honours project with Gregor MacFarlane, titled: Ship-Generated Solitons and the Dynamic Vessel Response as a Function of Blockage. You can read the article here and watch a video of the research here.\nThe process of diving deeply into a topic, receiving valuable mentorship, and exploring the frontier of knowledge ultimately sparked my interest in a scientific career.\nWe used the AMC towing tank to create the specific conditions required to generate soliton waves, and then measured the vessel response under different conditions. The results were interesting and the project was a lot of fun\nFollowing my engineering degree I volunteered in the USA with Montana Fish, Wildlife and Parks with the Wolf Program, which led me towards a Master of Science in Wildlife Management at the University of Otago. For my MSc thesis with Phil Seddon, Mike Paulin and Mariano Rodríguez Recio, we GPS-tracked kākā (Nestor meridionalis) in Orokonui Ecosanctuary, Dunedin, New Zealand. We assessed their space use and resource selection (via step selection functions), and how that changed throughout time. There were clear age-related patterns of both space use and resource selection, which correlated with higher mortality observations for younger kākā. The full thesis can be found here. The chapter about (dynamic) space use analyses has been published in Conservation Science and Practice and you can read the full paper here, or check out the description in the Research section of this website.\nWe used a sweeping window framework to assess how kākā space use changed throughout time, and how that differed between individuals of varying age.\nWe also assessed how the GPS devices that we used, which were Lotek PinPoint GPS VHF tags that used the SWIFT-fix snapshot algorithm were affected by vegetation and topography. This work was published in Animal Biotelemetry and you can read the full paper here, or check out the description in the Research section of this website.\nTo explore the underlying models of animal movement, my PhD is in Mathematical Sciences at the Queensland University of Technology (QUT) in collaboration with the Commonwealth Scientific and Industrial Research Organisation (CSIRO). My supervisors, collaborators and I have delved further into step selection functions, particularly in relation to incorporating fine-scale temporal dynamics and using alternative approaches to represent and model the step selection process. We applied these models to water buffalo, which are an introduced and damaging species in northern Australia. CSIRO has led a project called ‘SpaceCows’, which has involved the data collection, analysis and management advice for water buffalo in the Northern Territory and feral cattle in Cape York, Queensland. I was lucky enough to head out and assist with the catching of water buffalo in the Northern Territory, which was quite a thrilling experience!\nThe water buffalo were mustered using helicopters and a series of mustering vehicles such as this one. This protocol allows for the buffalo to be captured and released (with a GPS tag) in only a few minutes and reduces the need for anaesthetising the animals.\nThe Australian Broadcasting Corporation (ABC) has covered the SpaceCows project in a news article and a Landline episode (I make an appearance for about 5 seconds from 2:43, even holding a clipboard…).\nThis work has been published in Ecography and you can read the full paper here, or check out the description in the Research section of this website.\nSome examples of the research that I have been involved with are shown in the Research section of this website."
+    "text": "I’m currently a PhD candidate in Mathematical Sciences at the Queensland University of Technology (QUT) in Brisbane, Australia, and I am researching animal movement methods and applications. In my research I have explored space use and home range approaches, some hidden Markov modelling, and step selection functions and their extensions, and I am also interested in the application of machine learning to ecological problems. I work at the interface between developing methodology and applications to scientific and conservation questions, and I am fascinated by the decision-making processes that lead to animal movement, from the level of neurobiology to population dynamics.\nBefore getting into ecology, and the methods that underlie it, I studied a Bachelor of Engineering (Naval Architecture) with Honours at Flinders University in Adelaide, South Australia and the Australian Maritime College in Launceston, Tasmania. During this degree I thoroughly enjoyed the research endeavour through my Honours project with Gregor MacFarlane, titled: Ship-Generated Solitons and the Dynamic Vessel Response as a Function of Blockage. You can read the article here and watch a video of the research here.\nThe process of diving deeply into a topic, receiving valuable mentorship, and exploring the frontier of knowledge ultimately sparked my interest in a scientific career.\n\n\n\nWe used the AMC towing tank to create the specific conditions required to generate soliton waves, and then measured the vessel response under different conditions. The results were interesting and the project was a lot of fun\n\n\nFollowing my engineering degree I volunteered in the USA with Montana Fish, Wildlife and Parks with the Wolf Program, which led me towards a Master of Science in Wildlife Management at the University of Otago. For my MSc thesis with Phil Seddon, Mike Paulin and Mariano Rodríguez Recio, we GPS-tracked kākā (Nestor meridionalis) in Orokonui Ecosanctuary, Dunedin, New Zealand. We assessed their space use and resource selection (via step selection functions), and how that changed throughout time. There were clear age-related patterns of both space use and resource selection, which correlated with higher mortality observations for younger kākā. The full thesis can be found here. The chapter about (dynamic) space use analyses has been published in Conservation Science and Practice and you can read the full paper here, or check out the description in the Research section of this website.\n\n\n\nWe used a sweeping window framework to assess how kākā space use changed throughout time, and how that differed between individuals of varying age.\n\n\nWe also assessed how the GPS devices that we used, which were Lotek PinPoint GPS VHF tags that used the SWIFT-fix snapshot algorithm were affected by vegetation and topography. This work was published in Animal Biotelemetry and you can read the full paper here, or check out the description in the Research section of this website.\nTo explore the underlying models of animal movement, my PhD is in Mathematical Sciences at the Queensland University of Technology (QUT) in collaboration with the Commonwealth Scientific and Industrial Research Organisation (CSIRO). My supervisors, collaborators and I have delved further into step selection functions, particularly in relation to incorporating fine-scale temporal dynamics and using alternative approaches to represent and model the step selection process. We applied these models to water buffalo, which are an introduced and damaging species in northern Australia. CSIRO has led a project called ‘SpaceCows’, which has involved the data collection, analysis and management advice for water buffalo in the Northern Territory and feral cattle in Cape York, Queensland. I was lucky enough to head out and assist with the catching of water buffalo in the Northern Territory, which was quite a thrilling experience!\n\n\n\nThe water buffalo were mustered using helicopters and a series of mustering vehicles such as this one. This protocol allows for the buffalo to be captured and released (with a GPS tag) in only a few minutes and reduces the need for anaesthetising the animals.\n\n\nThe Australian Broadcasting Corporation (ABC) has covered the SpaceCows project in a news article and a Landline episode (I make an appearance for about 5 seconds from 2:43, even holding a clipboard…).\nThis work has been published in Ecography and you can read the full paper here, or check out the description in the Research section of this website.\nSome examples of the research that I have been involved with are shown in the Research section of this website."
   },
   {
     "objectID": "research/2024_dynamic_space_use.html",
     "href": "research/2024_dynamic_space_use.html",
     "title": "2024-dynamic-space-use",
     "section": "",
-    "text": "Description\nA methodological contribution of this paper is the sweeping window dynamic space use approach. We think this provides a new angle for evaluating space use by assessing how it changes through time. In our case there were young and old kākā in Orokonui Ecosanctuary, and we found that the younger kākā were more dynamic in their space use, which led to more time spent outside the reserve. This was associated with a higher number of incidental mortality observations.\nIn the animation below the right panel is the area contained within the 95% contour of a dynamic Brownian Bridge Movement Model (dBBMM) occurrence distribution (OD).\n\nIt isn’t clear which are the young and old individuals, but we can plot them separately to illustrate the differences.\n\n\nOlder kākā (5 years or older)\nThe older individuals had smaller home ranges and less dynamic space use.\n\n\n\nYounger kākā (3 years of younger)\nThe younger individuals had much larger home ranges which were more dynamic.\n\nYou might also spot that there are two individuals that overlap a lot in their space use, which change in a similar way through time. These two individuals were Orokonui-fledged juveniles (rather than captive-raised) that appear to display exploratory behaviour, which is largely outside of the fence in the latter part of the tracking period.\n\nFor more scripts and data, please visit the GitHub repository: GitHub repo: https://github.com/swforrest/Kaka_HR_DynamicSpaceUse\nCheck out the full paper here",
-    "crumbs": [
-      "Research",
-      "2024-dynamic-space-use"
-    ]
+    "text": "Description\nA methodological contribution of this paper is the sweeping window dynamic space use approach. We think this provides a new angle for evaluating space use by assessing how it changes through time. In our case there were young and old kākā in Orokonui Ecosanctuary, and we found that the younger kākā were more dynamic in their space use, which led to more time spent outside the reserve. This was associated with a higher number of incidental mortality observations.\nIn the animation below the right panel is the area contained within the 95% contour of a dynamic Brownian Bridge Movement Model (dBBMM) occurrence distribution (OD).\n\nIt isn’t clear which are the young and old individuals, but we can plot them separately to illustrate the differences.\n\n\nOlder kākā (5 years or older)\nThe older individuals had smaller home ranges and less dynamic space use.\n\n\n\nYounger kākā (3 years of younger)\nThe younger individuals had much larger home ranges which were more dynamic.\n\nYou might also spot that there are two individuals that overlap a lot in their space use, which change in a similar way through time. These two individuals were Orokonui-fledged juveniles (rather than captive-raised) that appear to display exploratory behaviour, which is largely outside of the fence in the latter part of the tracking period.\n\nFor more scripts and data, please visit the GitHub repository: GitHub repo: https://github.com/swforrest/Kaka_HR_DynamicSpaceUse\nCheck out the full paper here"
   },
   {
     "objectID": "research.html",
     "href": "research.html",
     "title": "Research",
     "section": "",
-    "text": "Here’s an overview of some research projects that I have been involved with, mostly linking to published papers."
+    "text": "Here’s an overview of some research projects that I have been involved with, mostly linking to published papers.",
+    "crumbs": [
+      "Research"
+    ]
   },
   {
     "objectID": "teaching/biol112_animal-biology.html",
     "href": "teaching/biol112_animal-biology.html",
     "title": "Animal Biology",
     "section": "",
-    "text": "During 2021 and 2022 I was a Teaching Fellow at the University of Otago.",
-    "crumbs": [
-      "Teaching",
-      "Animal Biology"
-    ]
+    "text": "During 2021 and 2022 I was a Teaching Fellow at the University of Otago."
   }
 ]
