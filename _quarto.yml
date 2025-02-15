@@ -35,9 +35,17 @@ website:
   sidebar:
       - title: Research
         style: floating
-        contents: research
+        contents: 
+          - research.qmd
+          - research
       - title: Teaching
-        contents: teaching
+        contents: 
+          - teaching.qmd
+          - teaching
+      - title: Blog
+        contents: 
+          - blog.qmd
+          - posts
 
 format:
   html:
