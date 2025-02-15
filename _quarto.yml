@@ -13,39 +13,39 @@ website:
       - text: Home
         href: index.qmd
       # - about.qmd
-      - text: Research
+      - text: "Research"
         href: research.qmd
-      - text: Teaching and Workshops
+      - text: "Teaching and Workshops"
         href: teaching.qmd
-      - text: Talks
+      - text: "Talks"
         href: talks.qmd
-      - text: Blog
+      - text: "Blog"
         href: blog.qmd
       - text: CV
         href: cv.qmd
 
     right: 
       - icon: github
-        href: https://github.com/swforrest/deepSSF
+        href: https://github.com/swforrest/
       - icon: envelope-at-fill
         href: mailto:scottwforrest@gmail.com
       - icon: linkedin
         href: https://www.linkedin.com/in/swforrest/
 
   sidebar:
-      - title: Research
+      - title: "Research"
         style: floating
         contents: 
           - research.qmd
-          - research
-      - title: Teaching
+          - research/*
+      - title: "Teaching and Workshops"
         contents: 
           - teaching.qmd
-          - teaching
-      - title: Blog
+          - teaching/*
+      - title: "Blog"
         contents: 
           - blog.qmd
-          - posts
+          - posts/*
 
 format:
   html:
