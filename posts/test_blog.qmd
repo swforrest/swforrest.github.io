@@ -1,0 +1,6 @@
+---
+title: "Test blog post"
+format: html
+---
+
+A test blog post.

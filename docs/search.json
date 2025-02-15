@@ -46,6 +46,37 @@
     "text": "Description\nBefore we tracked kākā (Nestor meridionalis) with GPS devices, we wanted to assess the accuracy of the devices under varying canopy cover and topographic conditions, and assess the relationship between the number of satellites that the ephemeris information was captured from and the Horizontal Dilution of Precision (HDOP).\nThe devices were Lotek GPS VHF devices with SWIFT fixes, which is a snapshot algorithm. This means that instead of processing the satellite information (ephermis) on-board, it is stored for post-processing, saving battery during deployment.\n A kākā with a Lotek GPS VHF device with the SWIFT fix algorithm. We tracked 10 kākā for 5-6 months. Photo: Charlotte Patterson.\nGitHub repo: https://github.com/swforrest/SWIFT-GPS-Test\nCheck out the full paper here"
   },
   {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Scott Forrest",
+    "section": "",
+    "text": "I’m currently a PhD candidate in Mathematical Sciences at the Queensland University of Technology (QUT) in Brisbane, Australia, and I am researching animal movement methods and applications. In my research I have explored space use and home range approaches, some hidden Markov modelling, and step selection functions and their extensions, and I am also interested in the application of machine learning to ecological problems. I work at the interface between developing methodology and applications to scientific and conservation questions, and I am fascinated by the decision-making processes that lead to animal movement, from the level of neurobiology to population dynamics.\nBefore getting into ecology, and the methods that underlie it, I studied a Bachelor of Engineering (Naval Architecture) with Honours at Flinders University in Adelaide, South Australia and the Australian Maritime College in Launceston, Tasmania. During this degree I thoroughly enjoyed the research endeavour through my Honours project with Gregor MacFarlane, titled: Ship-Generated Solitons and the Dynamic Vessel Response as a Function of Blockage. You can read the article here and watch a video of the research here.\nThe process of diving deeply into a topic, receiving valuable mentorship, and exploring the frontier of knowledge ultimately sparked my interest in a scientific career.\n\n\n\nWe used the AMC towing tank to create the specific conditions required to generate soliton waves, and then measured the vessel response under different conditions. The results were interesting and the project was a lot of fun\n\n\nFollowing my engineering degree I volunteered in the USA with Montana Fish, Wildlife and Parks with the Wolf Program, which led me towards a Master of Science in Wildlife Management at the University of Otago. For my MSc thesis with Phil Seddon, Mike Paulin and Mariano Rodríguez Recio, we GPS-tracked kākā (Nestor meridionalis) in Orokonui Ecosanctuary, Dunedin, New Zealand. We assessed their space use and resource selection (via step selection functions), and how that changed throughout time. There were clear age-related patterns of both space use and resource selection, which correlated with higher mortality observations for younger kākā. The full thesis can be found here. The chapter about (dynamic) space use analyses has been published in Conservation Science and Practice and you can read the full paper here, or check out the description in the Research section of this website.\n\n\n\nWe used a sweeping window framework to assess how kākā space use changed throughout time, and how that differed between individuals of varying age.\n\n\nWe also assessed how the GPS devices that we used, which were Lotek PinPoint GPS VHF tags that used the SWIFT-fix snapshot algorithm were affected by vegetation and topography. This work was published in Animal Biotelemetry and you can read the full paper here, or check out the description in the Research section of this website.\nTo explore the underlying models of animal movement, my PhD is in Mathematical Sciences at the Queensland University of Technology (QUT) in collaboration with the Commonwealth Scientific and Industrial Research Organisation (CSIRO). My supervisors, collaborators and I have delved further into step selection functions, particularly in relation to incorporating fine-scale temporal dynamics and using alternative approaches to represent and model the step selection process. We applied these models to water buffalo, which are an introduced and damaging species in northern Australia. CSIRO has led a project called ‘SpaceCows’, which has involved the data collection, analysis and management advice for water buffalo in the Northern Territory and feral cattle in Cape York, Queensland. I was lucky enough to head out and assist with the catching of water buffalo in the Northern Territory, which was quite a thrilling experience!\n\n\n\nThe water buffalo were mustered using helicopters and a series of mustering vehicles such as this one. This protocol allows for the buffalo to be captured and released (with a GPS tag) in only a few minutes and reduces the need for anaesthetising the animals.\n\n\nThe Australian Broadcasting Corporation (ABC) has covered the SpaceCows project in a news article and a Landline episode (I make an appearance for about 5 seconds from 2:43, even holding a clipboard…).\nThis work has been published in Ecography and you can read the full paper here, or check out the description in the Research section of this website.\nSome examples of the research that I have been involved with are shown in the Research section of this website."
+  },
+  {
+    "objectID": "cv.html",
+    "href": "cv.html",
+    "title": "CV",
+    "section": "",
+    "text": "Below is my CV as a pdf."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "Not used."
+  },
+  {
+    "objectID": "blog.html",
+    "href": "blog.html",
+    "title": "Blog",
+    "section": "",
+    "text": "To the left are some less formal items that don’t fit in the other categories.",
+    "crumbs": [
+      "Blog"
+    ]
+  },
+  {
     "objectID": "files/DynamicSSF_Walkthrough_Harmonics_and_selection_surfaces.html",
     "href": "files/DynamicSSF_Walkthrough_Harmonics_and_selection_surfaces.html",
     "title": "Reconstructing temporally dynamic coefficients and selection surfaces",
@@ -116,35 +147,11 @@
     "text": "Session info\n\n\nCode\nsessionInfo()\n\n\nR version 4.4.1 (2024-06-14 ucrt)\nPlatform: x86_64-w64-mingw32/x64\nRunning under: Windows 10 x64 (build 19045)\n\nMatrix products: default\n\n\nlocale:\n[1] LC_COLLATE=English_Australia.utf8  LC_CTYPE=English_Australia.utf8   \n[3] LC_MONETARY=English_Australia.utf8 LC_NUMERIC=C                      \n[5] LC_TIME=English_Australia.utf8    \n\ntime zone: Australia/Brisbane\ntzcode source: internal\n\nattached base packages:\n[1] stats     graphics  grDevices utils     datasets  methods   base     \n\nother attached packages:\n [1] scales_1.3.0        beepr_2.0           TwoStepCLogit_1.2.5\n [4] tictoc_1.2.1        lubridate_1.9.3     forcats_1.0.0      \n [7] stringr_1.5.1       dplyr_1.1.4         purrr_1.0.2        \n[10] readr_2.1.5         tidyr_1.3.1         tibble_3.2.1       \n[13] ggplot2_3.5.1       tidyverse_2.0.0    \n\nloaded via a namespace (and not attached):\n [1] utf8_1.2.4        generics_0.1.3    stringi_1.8.4     lattice_0.22-6   \n [5] hms_1.1.3         digest_0.6.37     magrittr_2.0.3    evaluate_1.0.0   \n [9] grid_4.4.1        timechange_0.3.0  fastmap_1.2.0     jsonlite_1.8.8   \n[13] Matrix_1.7-0      survival_3.6-4    audio_0.1-11      fansi_1.0.6      \n[17] viridisLite_0.4.2 isoband_0.2.7     cli_3.6.3         crayon_1.5.3     \n[21] rlang_1.1.4       bit64_4.0.5       munsell_0.5.1     splines_4.4.1    \n[25] withr_3.0.1       yaml_2.3.10       parallel_4.4.1    tools_4.4.1      \n[29] tzdb_0.4.0        colorspace_2.1-1  vctrs_0.6.5       R6_2.5.1         \n[33] lifecycle_1.0.4   htmlwidgets_1.6.4 bit_4.0.5         vroom_1.6.5      \n[37] pkgconfig_2.0.3   pillar_1.9.0      gtable_0.3.5      glue_1.7.0       \n[41] xfun_0.47         tidyselect_1.2.1  knitr_1.48        farver_2.1.2     \n[45] htmltools_0.5.8.1 labeling_0.4.3    rmarkdown_2.28    compiler_4.4.1"
   },
   {
-    "objectID": "blog.html",
-    "href": "blog.html",
-    "title": "Blog",
+    "objectID": "posts/test_blog.html",
+    "href": "posts/test_blog.html",
+    "title": "Test blog post",
     "section": "",
-    "text": "To the left are some less formal items that don’t fit in the other categories.",
-    "crumbs": [
-      "Blog"
-    ]
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "Not used."
-  },
-  {
-    "objectID": "cv.html",
-    "href": "cv.html",
-    "title": "CV",
-    "section": "",
-    "text": "Below is my CV as a pdf."
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Scott Forrest",
-    "section": "",
-    "text": "I’m currently a PhD candidate in Mathematical Sciences at the Queensland University of Technology (QUT) in Brisbane, Australia, and I am researching animal movement methods and applications. In my research I have explored space use and home range approaches, some hidden Markov modelling, and step selection functions and their extensions, and I am also interested in the application of machine learning to ecological problems. I work at the interface between developing methodology and applications to scientific and conservation questions, and I am fascinated by the decision-making processes that lead to animal movement, from the level of neurobiology to population dynamics.\nBefore getting into ecology, and the methods that underlie it, I studied a Bachelor of Engineering (Naval Architecture) with Honours at Flinders University in Adelaide, South Australia and the Australian Maritime College in Launceston, Tasmania. During this degree I thoroughly enjoyed the research endeavour through my Honours project with Gregor MacFarlane, titled: Ship-Generated Solitons and the Dynamic Vessel Response as a Function of Blockage. You can read the article here and watch a video of the research here.\nThe process of diving deeply into a topic, receiving valuable mentorship, and exploring the frontier of knowledge ultimately sparked my interest in a scientific career.\n\n\n\nWe used the AMC towing tank to create the specific conditions required to generate soliton waves, and then measured the vessel response under different conditions. The results were interesting and the project was a lot of fun\n\n\nFollowing my engineering degree I volunteered in the USA with Montana Fish, Wildlife and Parks with the Wolf Program, which led me towards a Master of Science in Wildlife Management at the University of Otago. For my MSc thesis with Phil Seddon, Mike Paulin and Mariano Rodríguez Recio, we GPS-tracked kākā (Nestor meridionalis) in Orokonui Ecosanctuary, Dunedin, New Zealand. We assessed their space use and resource selection (via step selection functions), and how that changed throughout time. There were clear age-related patterns of both space use and resource selection, which correlated with higher mortality observations for younger kākā. The full thesis can be found here. The chapter about (dynamic) space use analyses has been published in Conservation Science and Practice and you can read the full paper here, or check out the description in the Research section of this website.\n\n\n\nWe used a sweeping window framework to assess how kākā space use changed throughout time, and how that differed between individuals of varying age.\n\n\nWe also assessed how the GPS devices that we used, which were Lotek PinPoint GPS VHF tags that used the SWIFT-fix snapshot algorithm were affected by vegetation and topography. This work was published in Animal Biotelemetry and you can read the full paper here, or check out the description in the Research section of this website.\nTo explore the underlying models of animal movement, my PhD is in Mathematical Sciences at the Queensland University of Technology (QUT) in collaboration with the Commonwealth Scientific and Industrial Research Organisation (CSIRO). My supervisors, collaborators and I have delved further into step selection functions, particularly in relation to incorporating fine-scale temporal dynamics and using alternative approaches to represent and model the step selection process. We applied these models to water buffalo, which are an introduced and damaging species in northern Australia. CSIRO has led a project called ‘SpaceCows’, which has involved the data collection, analysis and management advice for water buffalo in the Northern Territory and feral cattle in Cape York, Queensland. I was lucky enough to head out and assist with the catching of water buffalo in the Northern Territory, which was quite a thrilling experience!\n\n\n\nThe water buffalo were mustered using helicopters and a series of mustering vehicles such as this one. This protocol allows for the buffalo to be captured and released (with a GPS tag) in only a few minutes and reduces the need for anaesthetising the animals.\n\n\nThe Australian Broadcasting Corporation (ABC) has covered the SpaceCows project in a news article and a Landline episode (I make an appearance for about 5 seconds from 2:43, even holding a clipboard…).\nThis work has been published in Ecography and you can read the full paper here, or check out the description in the Research section of this website.\nSome examples of the research that I have been involved with are shown in the Research section of this website."
+    "text": "A test blog post."
   },
   {
     "objectID": "research/2024_dynamic_space_use.html",
