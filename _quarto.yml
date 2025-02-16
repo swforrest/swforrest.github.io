@@ -15,12 +15,12 @@ website:
       # - about.qmd
       - text: "Research"
         href: research.qmd
-      - text: "Teaching and Workshops"
-        href: teaching.qmd
-      - text: "Talks"
-        href: talks.qmd
-      - text: "Blog"
-        href: blog.qmd
+      # - text: "Teaching and Workshops"
+      #   href: teaching.qmd
+      # - text: "Talks"
+      #   href: talks.qmd
+      # - text: "Blog"
+      #   href: blog.qmd
       - text: "CV"
         href: cv.qmd
 
@@ -43,11 +43,11 @@ website:
       - title: "Teaching and Workshops"
         contents: 
           - teaching.qmd
-          - auto: teaching
+          - auto: "teaching/*"
       - title: "Blog"
         contents: 
           - blog.qmd
-          - auto: posts
+          - auto: "posts/*"
 
   page-footer:
     background: light
