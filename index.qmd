@@ -16,7 +16,7 @@ about:
         - icon: envelope-at-fill
           text: Email
           href: "mailto:scottwforrest@gmail.com"  
-        - text: Scholar
+        - text: "{{< iconify academicons google-scholar-square >}} Scholar"
           href: https://scholar.google.com.au/citations?user=ECYMO3YAAAAJ&hl=en&authuser=1
         - text: ORCID
           href: https://orcid.org/0000-0001-9529-0108
@@ -30,14 +30,19 @@ I'm a PhD candidate in Mathematical Sciences at the Queensland University of Tec
 
 :::
 
+  
 
-Before getting into ecology, and the methods that underlie it, I studied a Bachelor of Engineering (Naval Architecture) with Honours at Flinders University in Adelaide, South Australia and the Australian Maritime College in Launceston, Tasmania. During this degree I thoroughly enjoyed the research endeavour through my Honours project with [Gregor MacFarlane](https://discover.utas.edu.au/gregorm), titled: Ship-Generated Solitons and the Dynamic Vessel Response as a Function of Blockage. You can read the article [here](files\FORREST_Scott - BEng (Hons) AMC Journal Article.pdf) and watch a video of the research [here](https://www.youtube.com/watch?v=D14QuUL8x60&ab_channel=ScottForrest).
+Before getting into ecology, and the some of data analysis methods that underlie it, I studied a Bachelor of Engineering (Naval Architecture) with Honours at Flinders University in Adelaide, South Australia and the Australian Maritime College in Launceston, Tasmania. During this degree I thoroughly enjoyed the research endeavour through my Honours project with [Gregor MacFarlane](https://discover.utas.edu.au/gregorm), titled: Ship-Generated Solitons and the Dynamic Vessel Response as a Function of Blockage. You can read the article [here](files\FORREST_Scott - BEng (Hons) AMC Journal Article.pdf) and watch a video of the research [here](https://www.youtube.com/watch?v=D14QuUL8x60&ab_channel=ScottForrest).
 
 The process of diving deeply into a topic, receiving valuable mentorship, and exploring the frontier of knowledge ultimately sparked my interest in a scientific career.
 
 ![We used the AMC towing tank to create the specific conditions required to generate soliton waves, and then measured the vessel response under different conditions. The results were interesting and the project was a lot of fun](/images/solitons.png)
 
-Following my engineering degree I volunteered in the USA with Montana Fish, Wildlife and Parks with the Wolf Program, which led me towards a Master of Science in Wildlife Management at the University of Otago. For my MSc thesis with [Phil Seddon](https://www.otago.ac.nz/zoology/staff/professor-phil-seddon), [Mike Paulin](https://www.otago.ac.nz/zoology/staff/associate-professor-mike-paulin) and [Mariano Rodríguez Recio](https://scholar.google.com/citations?user=nb72jnQAAAAJ&hl=en), we GPS-tracked kākā (*Nestor meridionalis*) in Orokonui Ecosanctuary, Dunedin, New Zealand. We assessed their space use and resource selection (via step selection functions), and how that changed throughout time. There were clear age-related patterns of both space use and resource selection, which correlated with higher mortality observations for younger kākā. The full thesis can be found [here](https://ourarchive.otago.ac.nz/esploro/outputs/graduate/Space-use-and-resourceselection-of-the/9926480331601891). The chapter about (dynamic) space use analyses has been published in Conservation Science and Practice and you can read the full paper [here](https://conbio.onlinelibrary.wiley.com/doi/10.1111/csp2.13119), or check out the description in the [Research](/research) section of this website.
+Following my engineering degree I volunteered in the USA with Montana Fish, Wildlife and Parks with the Wolf Program, which led me towards a Master of Science in Wildlife Management at the University of Otago. For my MSc thesis with [Phil Seddon](https://www.otago.ac.nz/zoology/staff/professor-phil-seddon), [Mike Paulin](https://www.otago.ac.nz/zoology/staff/associate-professor-mike-paulin) and [Mariano Rodríguez Recio](https://scholar.google.com/citations?user=nb72jnQAAAAJ&hl=en), we GPS-tracked kākā (*Nestor meridionalis*) in Orokonui Ecosanctuary, Dunedin, New Zealand. 
+
+![A kākā fitted with a Lotek GPS-VHF device with SWIFT fixes. Photo: Charlotte Patterson.](images/Figure S.3 - Kaka with device.png)
+
+We assessed their space use and resource selection (via step selection functions), and how that changed throughout time. There were clear age-related patterns of both space use and resource selection, which correlated with higher mortality observations for younger kākā. The full thesis can be found [here](https://ourarchive.otago.ac.nz/esploro/outputs/graduate/Space-use-and-resourceselection-of-the/9926480331601891). The chapter about (dynamic) space use analyses has been published in Conservation Science and Practice and you can read the full paper [here](https://conbio.onlinelibrary.wiley.com/doi/10.1111/csp2.13119), or check out the description in the [Research](/research) section of this website.
 
 ![We used a sweeping window framework to assess how kākā space use changed throughout time, and how that differed between individuals of varying age.](/images/all_ud_spatial_gif_20221115.gif)
 
@@ -45,10 +50,12 @@ We also assessed how the GPS devices that we used, which were [Lotek PinPoint GP
 
 To further explore the underlying models of animal movement, I am doing a PhD in Mathematical Sciences at the [Queensland University of Technology (QUT)](https://www.qut.edu.au/) in collaboration with the [Commonwealth Scientific and Industrial Research Organisation (CSIRO)](https://www.csiro.au/en/). My supervisors, [Michael Bode](https://michaelbode.wordpress.com/) and [Christopher Drovandi](https://www.qut.edu.au/about/our-people/academic-profiles/c.drovandi) at [QUT](https://www.qut.edu.au/), and [Andrew Hoskins](https://people.csiro.au/h/a/andrew-hoskins) and [Dan Pagendam](https://people.csiro.au/P/D/Dan-Pagendam) at CSIRO, collaborators, [Jonathan Potts](https://www.sheffield.ac.uk/mps/people/all-academic-staff/jonathan-potts) and [Conor Hassan](https://www.conorhassan.com/), and I have delved further into step selection functions, particularly in relation to incorporating fine-scale temporal dynamics and using alternative approaches to represent and model the step selection process. We applied these models to water buffalo, which are an introduced and damaging species in northern Australia. CSIRO has led a project called 'SpaceCows', which has involved the data collection, analysis and management advice for water buffalo in the Northern Territory and feral cattle in Cape York, Queensland. I was lucky enough to head out and assist with the catching of water buffalo in the Northern Territory, which was quite a thrilling experience!
 
-![The water buffalo were mustered using helicopters and a series of mustering vehicles such as this one. This tagging protocol allows for the buffalo to be captured and released (with a GPS tag) in only a few minutes and reduces the need for anaesthetising the animals.](/images\DSCF8916.JPG)
+![The water buffalo were mustered using helicopters and a series of mustering vehicles such as this one. This tagging protocol allows for the buffalo to be captured and released (with a GPS tag) in only a few minutes and reduces the need for anaesthetising the animals. Photo: Scott Forrest](/images\DSCF8916.JPG)
 
 The Australian Broadcasting Corporation (ABC) has covered the SpaceCows project in a [news article](https://www.abc.net.au/news/rural/2023-11-19/spacecows-csiro-indigenous-rangers-buffalo-surveillance/103103624) and a [Landline episode](https://www.youtube.com/watch?v=5TIFDJOnDVM&ab_channel=ABCAustralia) (I make an appearance for about 5 seconds from 2:43, even holding a clipboard...).
 
 This work has been published in Ecography and you can read the full paper [here](https://nsojournals.onlinelibrary.wiley.com/doi/10.1111/ecog.07421), or check out the description in the [Research](/research) section of this website.
+
+![](images/ecography_socials_image.jpg)
 
 Some examples of the research that I have been involved with are shown in the [Research](/research) section of this website. 

@@ -49,10 +49,22 @@ website:
           - blog.qmd
           - auto: posts
 
+  page-footer:
+  background: light
+  center:
+    - icon: github
+      href: https://github.com/swforrest
+    - icon: linkedin
+      href: https://www.linkedin.com/in/swforrest/
+    - text: "{{< iconify academicons google-scholar-square >}}"
+      href: https://scholar.google.com.au/citations?user=ECYMO3YAAAAJ&hl=en&authuser=1
+
 format:
   html:
     theme:
       - yeti
     css: styles.css
     toc: true
+
+
 
