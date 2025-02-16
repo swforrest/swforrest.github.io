@@ -1,12 +1,15 @@
 ---
-title: "2024-dynamic-space-use"
+title: "Dynamic Space Use"
 format: html
+bibliography: references.bib
 abstract: |
     Individual-level differences in animal spatial behavior can lead to differential exposure to risk. We assessed the risk-exposure of a reintroduced population of kākā (Nestor meridionalis) in a fenced reserve in New Zealand by GPS tracking 10 individuals and comparing the proportion of each individual''s home range beyond the reserve''s fence in relation to age, sex, and fledging origin. To estimate dynamic space use, we used a sweeping window framework to estimate occurrence distributions (ODs) from temporally overlapping snapshots. For each OD, we calculated the proportion outside the reserve''s fence to assess temporal risk exposure, and the area, centroid, and overlap to represent the behavioral pattern of space use. Home range area declined significantly and consistently with age, and the space use of juvenile kākā was more dynamic, particularly in relation to locational changes of space use. The wider-ranging and more dynamic behavior of younger kākā resulted in more time spent outside the reserve, which aligned with a higher number of incidental mortality observations. Quantifying both home range and dynamic space use is an effective approach to assess risk exposure, which can provide guidance for management interventions. We also emphasize the dynamic space use approach, which is flexible and can provide insights into a species'' spatial ecology.
 ---
 
-### Description
+## Description
 A methodological contribution of this paper is the sweeping window dynamic space use approach. We think this provides a new angle for evaluating space use by assessing how it changes through time. In our case there were young and old kākā in Orokonui Ecosanctuary, and we found that the younger kākā were more dynamic in their space use, which led to more time spent outside the reserve. This was associated with a higher number of incidental mortality observations.
+
+![Concept plot of the dynamic space use method, based on data from the paper (kākā ID 08). Occurrence distributions (ODs) were estimated for temporally overlapping snapshots of a fixed window width of 240 locations, which was swept along the movement track at a fixed increment of 6 locations. For this individual it resulted in 169 temporally overlapping snapshots of space use. The kākā’s movement trajectory is represented by step lengths (black line – left y-axis), and the resulting OD95 areas that were calculated for each temporal snapshot are shown by the blue line (right y-axis). Interpretation of the area of occurrence distributions should be taken carefully however, as occurrence estimators only quantify uncertainty in the movement path, and can be sensitive to the sampling interval and idiosyncrasies of the animal’s movement behaviour [@Alston2022-cj]. Several example ODs (all on the same scale) are shown to illustrate the gradual changes of space use. In this example, the large increases in OD95 were due to the inclusion of a new core area to the north in the central and right ODs. This is also reflected in the step lengths for the latter part of the tracking period, with a higher number of longer steps as this individual moved between the two core areas.](../images/dyn_space_use_concept.png)
 
 In the animation below the right panel is the area contained within the 95% contour of a dynamic Brownian Bridge Movement Model (dBBMM) occurrence distribution (OD). 
 

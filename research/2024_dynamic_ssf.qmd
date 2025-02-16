@@ -5,10 +5,14 @@ abstract: |
     Understanding and predicting animal movement is fundamental to ecology and conservation management. Models that estimate and then predict animal movement and habitat selection parameters underpin diverse conservation applications, from mitigating invasive species spread to enhancing landscape connectivity. However, many predictive models overlook fine-scale temporal dynamics within their predictions, despite animals often displaying fine-scale behavioural variability that might significantly alter their movement, habitat selection and distribution over time. Incorporating fine-scale temporal dynamics, such as circadian rhythms, within predictive models might reduce the averaging out of such behaviours, thereby enhancing our ability to make predictions in both the short and long term. We tested whether the inclusion of fine-scale temporal dynamics improved both fine-scale (hourly) and long-term (seasonal) spatial predictions for a significant invasive species of northern Australia, the water buffalo (*Bubalus bubalis*). Water buffalo require intensive management actions over vast, remote areas and display distinct circadian rhythms linked to habitat use. To inform management operations we generated hourly and dry season prediction maps by simulating trajectories from static and temporally dynamic step selection functions (SSFs) that were fitted to the GPS data of 13 water buffalo. We found that simulations generated from temporally dynamic models replicated the buffalo crepuscular movement patterns and dynamic habitat selection, resulting in more informative and accurate hourly predictions. Additionally, when the simulations were aggregated into long-term predictions, the dynamic models were more accurate and better able to highlight areas of concentrated habitat use that might indicate high-risk areas for environmental damage. Our findings emphasise the importance of incorporating fine-scale temporal dynamics in predictive models for species with clear dynamic behavioural patterns. By integrating temporally dynamic processes into animal movement trajectories, we demonstrate an approach that can enhance conservation management strategies and deepen our understanding of ecological and behavioural patterns across multiple timescales.
 ---
 
-### Description
+## Description
 In this paper we used harmonic terms to estimate temporally dynamic coefficients from step selection models, from which we simulated animal movement trajectories. The simulations with temporal dynamics gave informative hourly predictions of expected buffalo distribution (animations below), and also gave more accurate long-term predictions. 
 
-## Animations of hourly distributions ##
+![Concept plot illustrating the procedure of model fitting with two pairs of harmonic terms, reconstructing the temporally dynamic coefficients, and generating temporally dynamic trajectories. The model is fitted with covariates interacting with the harmonic terms, where $s1$, $s2$, $c1$ and $c2$ in the model formula represent $\sin(2\pi \tau / 24)$, $\sin(4\pi \tau / 24)$, $\cos(2\pi \tau / 24)$ and $\cos(4\pi \tau / 24)$, respectively, and $\tau$ is the hour of the day where $\tau \in T$, with $T$ denoting 24 hours. Any covariates can be interacted with the harmonics, including quadratic terms, movement parameters, memory and social covariates. 
+
+The coefficients are then reconstructed into time-varying coefficients (2a), and when linear and quadratic terms are interacted with harmonic terms, 'selection surfaces' can be created (2b). The movement parameters are 'updated' following the typical procedure [@Avgar2016-pb; @Fieberg2021-wx], although this is performed across $T$ (3). In our case there were negative values for the von Mises concentration parameter, suggesting that the mean of the distribution changed from $0$ to $\pi$, indicating a higher likelihood of taking return steps in the early morning. Using the temporally dynamic habitat selection coefficients and updated movement parameters, we can simulate by indexing the coefficients and parameters at time $\tau$ (4). In (4), we have shown the proposed steps from the current (blue) point, with the size of the circle representing the probability of choosing that step based on the habitat covariates. The red circle was the step that was selected, and forms the starting point for the next step.](../images/ecography_concept.png)
+
+### Animations of hourly distributions
 
 The observed buffalo locations for a given hour are shown as the white locations, and the heatmap is the result of running many (dynamic) SSF simulations. There are locations from several individual buffalo in this landscape extent.
 
@@ -17,7 +21,7 @@ The observed buffalo locations for a given hour are shown as the white locations
 ![](..\images\sim_preds_2p_hourly.gif)
 ![](..\images\sim_preds_3p_hourly.gif)
 
-## Harmonic regression tutorial ##
+### Harmonic regression tutorial
 
 We provide a script below is a walkthrough to build intuition around fitting models with harmonic interaction terms (harmonic regression).
 
