@@ -39,7 +39,7 @@ website:
         style: floating
         contents: 
           - research.qmd
-          - auto: research
+          - auto: "research/*"
       - title: "Teaching and Workshops"
         contents: 
           - teaching.qmd
