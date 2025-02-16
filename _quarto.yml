@@ -25,6 +25,8 @@ website:
         href: cv.qmd
 
     right: 
+      - text: "deepSSF"
+        href: https://swforrest.github.io/deepSSF/
       - icon: github
         href: https://github.com/swforrest/
       - icon: envelope-at-fill
