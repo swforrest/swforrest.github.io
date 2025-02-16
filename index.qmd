@@ -3,7 +3,7 @@ title: "Scott Forrest"
 about:
     template: jolla
     id: about-block
-    image: "images/headshot.png"
+    image: "images/headshot.jpg"
     links:
         - icon: github
           text: Github
