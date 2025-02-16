@@ -14,10 +14,17 @@ about:
         - icon: envelope-at-fill
           text: Email
           href: "mailto:scottwforrest@gmail.com"  
+          links:
+        - text: scholar
+          href: https://scholar.google.com.au/citations?user=ECYMO3YAAAAJ&hl=en&authuser=1
+        - text: orcid
+          href: https://orcid.org/0000-0001-9529-0108
+        - text: bluesky
+          href: https://bsky.app/profile/scottwilliamf.bsky.social
 ---
 
-::: {#about-block}
-:::
+<!-- ::: {#about-block}
+::: -->
 
 I'm currently a PhD candidate in Mathematical Sciences at the Queensland University of Technology (QUT) in Brisbane, Australia, and I am researching animal movement methods and applications. In my research I have explored space use and home range approaches, some hidden Markov modelling, and step selection functions and their extensions, and I am also interested in the application of machine learning to ecological problems. I work at the interface between developing methodology and applications to scientific and conservation questions, and I am fascinated by the decision-making processes that lead to animal movement, from the level of neurobiology to population dynamics.
 
