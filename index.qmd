@@ -42,7 +42,7 @@ Following my engineering degree I volunteered in the USA with Montana Fish, Wild
 
 ![A kākā fitted with a Lotek GPS-VHF device with SWIFT fixes. Photo: Charlotte Patterson.](images/Figure S.3 - Kaka with device.png)
 
-We assessed their space use and resource selection (via step selection functions), and how that changed throughout time. There were clear age-related patterns of both space use and resource selection, which correlated with higher mortality observations for younger kākā. The full thesis can be found [here](https://ourarchive.otago.ac.nz/esploro/outputs/graduate/Space-use-and-resourceselection-of-the/9926480331601891). The chapter about (dynamic) space use analyses has been published in Conservation Science and Practice and you can read the full paper [here](https://conbio.onlinelibrary.wiley.com/doi/10.1111/csp2.13119), or check out the description in the [Research](/research) section of this website.
+We assessed the kākā's space use and resource selection (via step selection functions), and how that changed throughout time. There were clear age-related patterns of both space use and resource selection, which correlated with higher mortality observations for younger kākā. The full thesis can be found [here](https://ourarchive.otago.ac.nz/esploro/outputs/graduate/Space-use-and-resourceselection-of-the/9926480331601891). The chapter about (dynamic) space use analyses has been published in Conservation Science and Practice and you can read the full paper [here](https://conbio.onlinelibrary.wiley.com/doi/10.1111/csp2.13119), or check out the description in the [Research](/research) section of this website.
 
 ![We used a sweeping window framework to assess how kākā space use changed throughout time, and how that differed between individuals of varying age.](/images/all_ud_spatial_gif_20221115.gif)
 
@@ -59,3 +59,7 @@ This work has been published in Ecography and you can read the full paper [here]
 ![](images/ecography_socials_image.jpg)
 
 Some examples of the research that I have been involved with are shown in the [Research](/research) section of this website. 
+
+I have also collaborated on projects with a few other incredible species!
+
+![Northern quoll (*Dasyurus hallucatus*), Shingleback lizard (*Tiliqua rugosa*) and the unique and wonderful kākāpō (*Strigops habroptilus*)](images/study_species.png)

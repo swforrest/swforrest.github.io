@@ -1,4 +1,5 @@
 files/data_for_scripts
+*.pptx
 
 .Rproj.user
 .Rhistory
