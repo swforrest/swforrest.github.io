@@ -4,6 +4,8 @@ about:
     id: about-block
     template: trestles
     image: images/headshot.jpg
+    image-width: 15em
+    image-shape: round
     links:
         - icon: github
           text: Github
@@ -14,19 +16,20 @@ about:
         - icon: envelope-at-fill
           text: Email
           href: "mailto:scottwforrest@gmail.com"  
-        - text: scholar
+        - text: Scholar
           href: https://scholar.google.com.au/citations?user=ECYMO3YAAAAJ&hl=en&authuser=1
-        - text: orcid
+        - text: ORCID
           href: https://orcid.org/0000-0001-9529-0108
-        - text: bluesky
+        - text: Bluesky
           href: https://bsky.app/profile/scottwilliamf.bsky.social
 ---
 
 ::: {#about-block}
 
-I'm currently a PhD candidate in Mathematical Sciences at the Queensland University of Technology (QUT) in Brisbane, Australia, and I am researching animal movement methods and applications. In my research I have explored space use and home range approaches, some hidden Markov modelling, and step selection functions and their extensions, and I am also interested in the application of machine learning to ecological problems. I work at the interface between developing methodology and applications to scientific and conservation questions, and I am fascinated by the decision-making processes that lead to animal movement, from the level of neurobiology to population dynamics.
+I'm a PhD candidate in Mathematical Sciences at the Queensland University of Technology (QUT) in Brisbane, Australia, and I am researching animal movement methods and applications. In my research I have explored space use and home range approaches, some hidden Markov modelling, and step selection functions and their extensions, and I am also interested in the application of machine learning to ecological problems. I work at the interface between developing methodology and applications to scientific and conservation questions, and I am fascinated by the decision-making processes that lead to animal movement, from the level of neurobiology to population dynamics.
 
 :::
+
 
 Before getting into ecology, and the methods that underlie it, I studied a Bachelor of Engineering (Naval Architecture) with Honours at Flinders University in Adelaide, South Australia and the Australian Maritime College in Launceston, Tasmania. During this degree I thoroughly enjoyed the research endeavour through my Honours project with [Gregor MacFarlane](https://discover.utas.edu.au/gregorm), titled: Ship-Generated Solitons and the Dynamic Vessel Response as a Function of Blockage. You can read the article [here](files\FORREST_Scott - BEng (Hons) AMC Journal Article.pdf) and watch a video of the research [here](https://www.youtube.com/watch?v=D14QuUL8x60&ab_channel=ScottForrest).
 
@@ -40,9 +43,9 @@ Following my engineering degree I volunteered in the USA with Montana Fish, Wild
 
 We also assessed how the GPS devices that we used, which were [Lotek PinPoint GPS VHF tags](https://www.lotek.com/products/pinpoint-gps-vhf/) that used the SWIFT-fix snapshot algorithm were affected by vegetation and topography. This work was published in Animal Biotelemetry and you can read the full paper [here](https://animalbiotelemetry.biomedcentral.com/articles/10.1186/s40317-022-00289-9), or check out the description in the [Research](/research) section of this website.
 
-To explore the underlying models of animal movement, my PhD is in Mathematical Sciences at the Queensland University of Technology (QUT) in collaboration with the Commonwealth Scientific and Industrial Research Organisation (CSIRO). My supervisors, collaborators and I have delved further into step selection functions, particularly in relation to incorporating fine-scale temporal dynamics and using alternative approaches to represent and model the step selection process. We applied these models to water buffalo, which are an introduced and damaging species in northern Australia. CSIRO has led a project called 'SpaceCows', which has involved the data collection, analysis and management advice for water buffalo in the Northern Territory and feral cattle in Cape York, Queensland. I was lucky enough to head out and assist with the catching of water buffalo in the Northern Territory, which was quite a thrilling experience!
+To further explore the underlying models of animal movement, I am doing a PhD in Mathematical Sciences at the [Queensland University of Technology (QUT)](https://www.qut.edu.au/) in collaboration with the [Commonwealth Scientific and Industrial Research Organisation (CSIRO)](https://www.csiro.au/en/). My supervisors, [Michael Bode](https://michaelbode.wordpress.com/) and [Christopher Drovandi](https://www.qut.edu.au/about/our-people/academic-profiles/c.drovandi) at [QUT](https://www.qut.edu.au/), and [Andrew Hoskins](https://people.csiro.au/h/a/andrew-hoskins) and [Dan Pagendam](https://people.csiro.au/P/D/Dan-Pagendam) at CSIRO, collaborators, [Jonathan Potts](https://www.sheffield.ac.uk/mps/people/all-academic-staff/jonathan-potts) and [Conor Hassan](https://www.conorhassan.com/), and I have delved further into step selection functions, particularly in relation to incorporating fine-scale temporal dynamics and using alternative approaches to represent and model the step selection process. We applied these models to water buffalo, which are an introduced and damaging species in northern Australia. CSIRO has led a project called 'SpaceCows', which has involved the data collection, analysis and management advice for water buffalo in the Northern Territory and feral cattle in Cape York, Queensland. I was lucky enough to head out and assist with the catching of water buffalo in the Northern Territory, which was quite a thrilling experience!
 
-![The water buffalo were mustered using helicopters and a series of mustering vehicles such as this one. This protocol allows for the buffalo to be captured and released (with a GPS tag) in only a few minutes and reduces the need for anaesthetising the animals.](/images\DSCF8916.JPG)
+![The water buffalo were mustered using helicopters and a series of mustering vehicles such as this one. This tagging protocol allows for the buffalo to be captured and released (with a GPS tag) in only a few minutes and reduces the need for anaesthetising the animals.](/images\DSCF8916.JPG)
 
 The Australian Broadcasting Corporation (ABC) has covered the SpaceCows project in a [news article](https://www.abc.net.au/news/rural/2023-11-19/spacecows-csiro-indigenous-rangers-buffalo-surveillance/103103624) and a [Landline episode](https://www.youtube.com/watch?v=5TIFDJOnDVM&ab_channel=ABCAustralia) (I make an appearance for about 5 seconds from 2:43, even holding a clipboard...).
 
