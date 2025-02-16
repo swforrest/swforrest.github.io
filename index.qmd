@@ -16,7 +16,7 @@ about:
         - icon: envelope-at-fill
           text: Email
           href: "mailto:scottwforrest@gmail.com"  
-        - text: "{{< iconify academicons google-scholar-square >}} Scholar"
+        - text: "Scholar"
           href: https://scholar.google.com.au/citations?user=ECYMO3YAAAAJ&hl=en&authuser=1
         - text: ORCID
           href: https://orcid.org/0000-0001-9529-0108
@@ -40,7 +40,7 @@ The process of diving deeply into a topic, receiving valuable mentorship, and ex
 
 Following my engineering degree I volunteered in the USA with Montana Fish, Wildlife and Parks with the Wolf Program, which led me towards a Master of Science in Wildlife Management at the University of Otago. For my MSc thesis with [Phil Seddon](https://www.otago.ac.nz/zoology/staff/professor-phil-seddon), [Mike Paulin](https://www.otago.ac.nz/zoology/staff/associate-professor-mike-paulin) and [Mariano Rodríguez Recio](https://scholar.google.com/citations?user=nb72jnQAAAAJ&hl=en), we GPS-tracked kākā (*Nestor meridionalis*) in Orokonui Ecosanctuary, Dunedin, New Zealand. 
 
-![A kākā fitted with a Lotek GPS-VHF device with SWIFT fixes. Photo: Charlotte Patterson.](images/Figure S.3 - Kaka with device.png)
+![A kākā fitted with a Lotek GPS-VHF device that uses the SWIFT fix algorithm. Photo: Charlotte Patterson.](images/Figure S.3 - Kaka with device.png)
 
 We assessed the kākā's space use and resource selection (via step selection functions), and how that changed throughout time. There were clear age-related patterns of both space use and resource selection, which correlated with higher mortality observations for younger kākā. The full thesis can be found [here](https://ourarchive.otago.ac.nz/esploro/outputs/graduate/Space-use-and-resourceselection-of-the/9926480331601891). The chapter about (dynamic) space use analyses has been published in Conservation Science and Practice and you can read the full paper [here](https://conbio.onlinelibrary.wiley.com/doi/10.1111/csp2.13119), or check out the description in the [Research](/research) section of this website.
 
