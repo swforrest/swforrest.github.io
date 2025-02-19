@@ -7,6 +7,9 @@ execute:
 
 website:
   title: "Scott Forrest"
+  google-analytics: 
+    tracking-id: "G-0P938DSNYB"
+    storage: none
 
   navbar:
     left:
