@@ -3,4 +3,4 @@ title: "CV"
 format: html
 ---
 
-{{< pdf file="FORREST_Scott_CV_Feb2025.pdf" height="1000px" >}}
+{{< pdf file="FORREST_Scott_CV_June2025.pdf" height="1000px" >}}

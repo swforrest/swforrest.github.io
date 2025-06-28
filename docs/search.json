@@ -1,76 +1,5 @@
 [
   {
-    "objectID": "teaching.html",
-    "href": "teaching.html",
-    "title": "Teaching",
-    "section": "",
-    "text": "I have been involved with various teaching throughout my time as a postgrad. I have been tutored or been a Teaching Fellow in Animal Biology, Ecology, Ecological Statistics, and Computational Mathematics.\nClick on the tabs to the left to see more of a description about each role.",
-    "crumbs": [
-      "Teaching"
-    ]
-  },
-  {
-    "objectID": "talks.html",
-    "href": "talks.html",
-    "title": "Talks",
-    "section": "",
-    "text": "Below is a selected list of talks from my research."
-  },
-  {
-    "objectID": "research/2024_dynamic_ssf.html",
-    "href": "research/2024_dynamic_ssf.html",
-    "title": "Dynamic SSF",
-    "section": "",
-    "text": "In this paper we used harmonic terms to estimate temporally dynamic coefficients from step selection models, from which we simulated animal movement trajectories. The simulations with temporal dynamics gave informative hourly predictions of expected buffalo distribution (animations below), and also gave more accurate long-term predictions.\n\n\n\nConcept plot illustrating the procedure of model fitting with two pairs of harmonic terms, reconstructing the temporally dynamic coefficients, and generating temporally dynamic trajectories. The model is fitted with covariates interacting with the harmonic terms, where \\(s1\\), \\(s2\\), \\(c1\\) and \\(c2\\) in the model formula represent \\(\\sin(2\\pi \\tau / 24)\\), \\(\\sin(4\\pi \\tau / 24)\\), \\(\\cos(2\\pi \\tau / 24)\\) and \\(\\cos(4\\pi \\tau / 24)\\), respectively, and \\(\\tau\\) is the hour of the day where \\(\\tau \\in T\\), with \\(T\\) denoting 24 hours. Any covariates can be interacted with the harmonics, including quadratic terms, movement parameters, memory and social covariates. The coefficients are then reconstructed into time-varying coefficients (2a), and when linear and quadratic terms are interacted with harmonic terms, ‘selection surfaces’ can be created (2b). The movement parameters are ‘updated’ following the typical procedure [@Avgar2016-pb; @Fieberg2021-wx], although this is performed across \\(T\\) (3). In our case there were negative values for the von Mises concentration parameter, suggesting that the mean of the distribution changed from \\(0\\) to \\(\\pi\\), indicating a higher likelihood of taking return steps in the early morning. Using the temporally dynamic habitat selection coefficients and updated movement parameters, we can simulate by indexing the coefficients and parameters at time \\(\\tau\\) (4). In (4), we have shown the proposed steps from the current (blue) point, with the size of the circle representing the probability of choosing that step based on the habitat covariates. The red circle was the step that was selected, and forms the starting point for the next step.\n\n\n\n\nThe observed buffalo locations for a given hour are shown as the white locations, and the heatmap is the result of running many (dynamic) SSF simulations. There are locations from several individual buffalo in this landscape extent.\n   \n\n\n\nWe provide a script below is a walkthrough to build intuition around fitting models with harmonic interaction terms (harmonic regression).\nDynSSF_Walkthrough_Harmonics_and_selection_surfaces\nFor more scripts and data, please visit the GitHub repository: GitHub repo: https://github.com/swforrest/dynamic_SSF_sims\nCheck out the full paper here",
-    "crumbs": [
-      "Research",
-      "Dynamic SSF"
-    ]
-  },
-  {
-    "objectID": "research/2024_dynamic_ssf.html#description",
-    "href": "research/2024_dynamic_ssf.html#description",
-    "title": "Dynamic SSF",
-    "section": "",
-    "text": "In this paper we used harmonic terms to estimate temporally dynamic coefficients from step selection models, from which we simulated animal movement trajectories. The simulations with temporal dynamics gave informative hourly predictions of expected buffalo distribution (animations below), and also gave more accurate long-term predictions.\n\n\n\nConcept plot illustrating the procedure of model fitting with two pairs of harmonic terms, reconstructing the temporally dynamic coefficients, and generating temporally dynamic trajectories. The model is fitted with covariates interacting with the harmonic terms, where \\(s1\\), \\(s2\\), \\(c1\\) and \\(c2\\) in the model formula represent \\(\\sin(2\\pi \\tau / 24)\\), \\(\\sin(4\\pi \\tau / 24)\\), \\(\\cos(2\\pi \\tau / 24)\\) and \\(\\cos(4\\pi \\tau / 24)\\), respectively, and \\(\\tau\\) is the hour of the day where \\(\\tau \\in T\\), with \\(T\\) denoting 24 hours. Any covariates can be interacted with the harmonics, including quadratic terms, movement parameters, memory and social covariates. The coefficients are then reconstructed into time-varying coefficients (2a), and when linear and quadratic terms are interacted with harmonic terms, ‘selection surfaces’ can be created (2b). The movement parameters are ‘updated’ following the typical procedure [@Avgar2016-pb; @Fieberg2021-wx], although this is performed across \\(T\\) (3). In our case there were negative values for the von Mises concentration parameter, suggesting that the mean of the distribution changed from \\(0\\) to \\(\\pi\\), indicating a higher likelihood of taking return steps in the early morning. Using the temporally dynamic habitat selection coefficients and updated movement parameters, we can simulate by indexing the coefficients and parameters at time \\(\\tau\\) (4). In (4), we have shown the proposed steps from the current (blue) point, with the size of the circle representing the probability of choosing that step based on the habitat covariates. The red circle was the step that was selected, and forms the starting point for the next step.\n\n\n\n\nThe observed buffalo locations for a given hour are shown as the white locations, and the heatmap is the result of running many (dynamic) SSF simulations. There are locations from several individual buffalo in this landscape extent.\n   \n\n\n\nWe provide a script below is a walkthrough to build intuition around fitting models with harmonic interaction terms (harmonic regression).\nDynSSF_Walkthrough_Harmonics_and_selection_surfaces\nFor more scripts and data, please visit the GitHub repository: GitHub repo: https://github.com/swforrest/dynamic_SSF_sims\nCheck out the full paper here",
-    "crumbs": [
-      "Research",
-      "Dynamic SSF"
-    ]
-  },
-  {
-    "objectID": "research/2022-moving-wildlife-forward.html",
-    "href": "research/2022-moving-wildlife-forward.html",
-    "title": "Testing Snapshot GPS Devices",
-    "section": "",
-    "text": "Description\nBefore we tracked kākā (Nestor meridionalis) with GPS devices, we wanted to assess the accuracy of the devices under varying canopy cover and topographic conditions, and assess the relationship between the number of satellites that the ephemeris information was captured from and the Horizontal Dilution of Precision (HDOP).\nThe devices were Lotek GPS VHF devices with SWIFT fixes, which is a snapshot algorithm. This means that instead of processing the satellite information (ephermis) on-board, it is stored for post-processing, saving battery during deployment.\n A kākā with a Lotek GPS VHF device with the SWIFT fix algorithm. We tracked 10 kākā for 5-6 months. Photo: Charlotte Patterson.\nGitHub repo: https://github.com/swforrest/SWIFT-GPS-Test\nCheck out the full paper here",
-    "crumbs": [
-      "Research",
-      "Testing Snapshot GPS Devices"
-    ]
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Scott Forrest",
-    "section": "",
-    "text": "Github\n  \n  \n    \n     LinkedIn\n  \n  \n    \n     Email\n  \n  \n     Scholar\n  \n  \n     ORCID\n  \n  \n     Bluesky\n  \n\n  \n  \nI’m a PhD candidate in Mathematical Sciences at the Queensland University of Technology (QUT) in Brisbane, Australia, and I am researching animal movement methods and applications. In my research I have explored space use and home range approaches, some hidden Markov modelling, and step selection functions and their extensions, and I am also interested in the application of machine learning to ecological problems. I work at the interface between developing methodology and applications to scientific and conservation questions, and I am fascinated by the decision-making processes that lead to animal movement, from the level of neurobiology to population dynamics.\n\n\n\nBefore getting into ecology, and the some of data analysis methods that underlie it, I studied a Bachelor of Engineering (Naval Architecture) with Honours at Flinders University in Adelaide, South Australia and the Australian Maritime College in Launceston, Tasmania. During this degree I thoroughly enjoyed the research endeavour through my Honours project with Gregor MacFarlane, titled: Ship-Generated Solitons and the Dynamic Vessel Response as a Function of Blockage. You can read the article here and watch a video of the research here.\nThe process of diving deeply into a topic, receiving valuable mentorship, and exploring the frontier of knowledge ultimately sparked my interest in a scientific career.\n\n\n\nWe used the AMC towing tank to create the specific conditions required to generate soliton waves, and then measured the vessel response under different conditions. The results were interesting and the project was a lot of fun\n\n\nFollowing my engineering degree I volunteered in the USA with Montana Fish, Wildlife and Parks with the Wolf Program, which led me towards a Master of Science in Wildlife Management at the University of Otago. For my MSc thesis with Phil Seddon, Mike Paulin and Mariano Rodríguez Recio, we GPS-tracked kākā (Nestor meridionalis) in Orokonui Ecosanctuary, Dunedin, New Zealand.\n\n\n\nA kākā fitted with a Lotek GPS-VHF device that uses the SWIFT fix algorithm. Photo: Charlotte Patterson.\n\n\nWe assessed the kākā’s space use and resource selection (via step selection functions), and how that changed throughout time. There were clear age-related patterns of both space use and resource selection, which correlated with higher mortality observations for younger kākā. The full thesis can be found here. The chapter about (dynamic) space use analyses has been published in Conservation Science and Practice and you can read the full paper here, or check out the description in the Research section of this website.\n\n\n\nWe used a sweeping window framework to assess how kākā space use changed throughout time, and how that differed between individuals of varying age.\n\n\nWe also assessed how the GPS devices that we used, which were Lotek PinPoint GPS VHF tags that used the SWIFT-fix snapshot algorithm were affected by vegetation and topography. This work was published in Animal Biotelemetry and you can read the full paper here, or check out the description in the Research section of this website.\nTo further explore the underlying models of animal movement, I am doing a PhD in Mathematical Sciences at the Queensland University of Technology (QUT) in collaboration with the Commonwealth Scientific and Industrial Research Organisation (CSIRO). My supervisors, Michael Bode and Christopher Drovandi at QUT, and Andrew Hoskins and Dan Pagendam at CSIRO, collaborators, Jonathan Potts and Conor Hassan, and I have delved further into step selection functions, particularly in relation to incorporating fine-scale temporal dynamics and using alternative approaches to represent and model the step selection process. We applied these models to water buffalo, which are an introduced and damaging species in northern Australia. CSIRO has led a project called ‘SpaceCows’, which has involved the data collection, analysis and management advice for water buffalo in the Northern Territory and feral cattle in Cape York, Queensland. I was lucky enough to head out and assist with the catching of water buffalo in the Northern Territory, which was quite a thrilling experience!\n\n\n\nThe water buffalo were mustered using helicopters and a series of mustering vehicles such as this one. This tagging protocol allows for the buffalo to be captured and released (with a GPS tag) in only a few minutes and reduces the need for anaesthetising the animals. Photo: Scott Forrest\n\n\nThe Australian Broadcasting Corporation (ABC) has covered the SpaceCows project in a news article and a Landline episode (I make an appearance for about 5 seconds from 2:43, even holding a clipboard…).\nThis work has been published in Ecography and you can read the full paper here, or check out the description in the Research section of this website.\n\nSome examples of the research that I have led are shown in the Research section of this website, but I have also collaborated on projects with a few other incredible species!\n\n\n\nNorthern quoll (Dasyurus hallucatus), Shingleback lizard (Tiliqua rugosa) and the unique and wonderful kākāpō (Strigops habroptilus)."
-  },
-  {
-    "objectID": "cv.html",
-    "href": "cv.html",
-    "title": "CV",
-    "section": "",
-    "text": "Download PDF File\n   \n    Unable to display PDF file. Download instead."
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "Not used."
-  },
-  {
     "objectID": "blog.html",
     "href": "blog.html",
     "title": "Blog",
@@ -151,13 +80,60 @@
     "text": "Session info\n\n\nCode\nsessionInfo()\n\n\nR version 4.4.1 (2024-06-14 ucrt)\nPlatform: x86_64-w64-mingw32/x64\nRunning under: Windows 10 x64 (build 19045)\n\nMatrix products: default\n\n\nlocale:\n[1] LC_COLLATE=English_Australia.utf8  LC_CTYPE=English_Australia.utf8   \n[3] LC_MONETARY=English_Australia.utf8 LC_NUMERIC=C                      \n[5] LC_TIME=English_Australia.utf8    \n\ntime zone: Australia/Brisbane\ntzcode source: internal\n\nattached base packages:\n[1] stats     graphics  grDevices utils     datasets  methods   base     \n\nother attached packages:\n [1] scales_1.3.0        beepr_2.0           TwoStepCLogit_1.2.5\n [4] tictoc_1.2.1        lubridate_1.9.3     forcats_1.0.0      \n [7] stringr_1.5.1       dplyr_1.1.4         purrr_1.0.2        \n[10] readr_2.1.5         tidyr_1.3.1         tibble_3.2.1       \n[13] ggplot2_3.5.1       tidyverse_2.0.0    \n\nloaded via a namespace (and not attached):\n [1] utf8_1.2.4        generics_0.1.3    stringi_1.8.4     lattice_0.22-6   \n [5] hms_1.1.3         digest_0.6.37     magrittr_2.0.3    evaluate_1.0.0   \n [9] grid_4.4.1        timechange_0.3.0  fastmap_1.2.0     jsonlite_1.8.8   \n[13] Matrix_1.7-0      survival_3.6-4    audio_0.1-11      fansi_1.0.6      \n[17] viridisLite_0.4.2 isoband_0.2.7     cli_3.6.3         crayon_1.5.3     \n[21] rlang_1.1.4       bit64_4.0.5       munsell_0.5.1     splines_4.4.1    \n[25] withr_3.0.1       yaml_2.3.10       parallel_4.4.1    tools_4.4.1      \n[29] tzdb_0.4.0        colorspace_2.1-1  vctrs_0.6.5       R6_2.5.1         \n[33] lifecycle_1.0.4   htmlwidgets_1.6.4 bit_4.0.5         vroom_1.6.5      \n[37] pkgconfig_2.0.3   pillar_1.9.0      gtable_0.3.5      glue_1.7.0       \n[41] xfun_0.47         tidyselect_1.2.1  knitr_1.48        farver_2.1.2     \n[45] htmltools_0.5.8.1 labeling_0.4.3    rmarkdown_2.28    compiler_4.4.1"
   },
   {
-    "objectID": "posts/test_blog.html",
-    "href": "posts/test_blog.html",
-    "title": "Test blog post",
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
     "section": "",
-    "text": "A test blog post.",
+    "text": "Not used."
+  },
+  {
+    "objectID": "talks.html",
+    "href": "talks.html",
+    "title": "Talks",
+    "section": "",
+    "text": "Below is a selected list of talks from my research."
+  },
+  {
+    "objectID": "research.html",
+    "href": "research.html",
+    "title": "Research",
+    "section": "",
+    "text": "Click on the tabs to the left to see some research projects that I have been involved with, mostly linking to published papers.\nRecently, my collaborators and I used deep learning to model animal movement in a step selection framework. You can check out the preprint and the website with tutorials and code here: https://swforrest.github.io/deepSSF/.\nTo check out my full list of publications, see my Google Scholar profile.",
     "crumbs": [
-      "Test blog post"
+      "Research"
+    ]
+  },
+  {
+    "objectID": "research/2022-moving-wildlife-forward.html",
+    "href": "research/2022-moving-wildlife-forward.html",
+    "title": "Testing Snapshot GPS Devices",
+    "section": "",
+    "text": "Description\nBefore we tracked kākā (Nestor meridionalis) with GPS devices, we wanted to assess the accuracy of the devices under varying canopy cover and topographic conditions, and assess the relationship between the number of satellites that the ephemeris information was captured from and the Horizontal Dilution of Precision (HDOP).\nThe devices were Lotek GPS VHF devices with SWIFT fixes, which is a snapshot algorithm. This means that instead of processing the satellite information (ephermis) on-board, it is stored for post-processing, saving battery during deployment.\n A kākā with a Lotek GPS VHF device with the SWIFT fix algorithm. We tracked 10 kākā for 5-6 months. Photo: Charlotte Patterson.\nGitHub repo: https://github.com/swforrest/SWIFT-GPS-Test\nCheck out the full paper here",
+    "crumbs": [
+      "Research",
+      "Testing Snapshot GPS Devices"
+    ]
+  },
+  {
+    "objectID": "research/2024_dynamic_ssf.html",
+    "href": "research/2024_dynamic_ssf.html",
+    "title": "Dynamic SSF",
+    "section": "",
+    "text": "In this paper we used harmonic terms to estimate temporally dynamic coefficients from step selection models, from which we simulated animal movement trajectories. The simulations with temporal dynamics gave informative hourly predictions of expected buffalo distribution (animations below), and also gave more accurate long-term predictions.\n\n\n\nConcept plot illustrating the procedure of model fitting with two pairs of harmonic terms, reconstructing the temporally dynamic coefficients, and generating temporally dynamic trajectories. The model is fitted with covariates interacting with the harmonic terms, where \\(s1\\), \\(s2\\), \\(c1\\) and \\(c2\\) in the model formula represent \\(\\sin(2\\pi \\tau / 24)\\), \\(\\sin(4\\pi \\tau / 24)\\), \\(\\cos(2\\pi \\tau / 24)\\) and \\(\\cos(4\\pi \\tau / 24)\\), respectively, and \\(\\tau\\) is the hour of the day where \\(\\tau \\in T\\), with \\(T\\) denoting 24 hours. Any covariates can be interacted with the harmonics, including quadratic terms, movement parameters, memory and social covariates. The coefficients are then reconstructed into time-varying coefficients (2a), and when linear and quadratic terms are interacted with harmonic terms, ‘selection surfaces’ can be created (2b). The movement parameters are ‘updated’ following the typical procedure [@Avgar2016-pb; @Fieberg2021-wx], although this is performed across \\(T\\) (3). In our case there were negative values for the von Mises concentration parameter, suggesting that the mean of the distribution changed from \\(0\\) to \\(\\pi\\), indicating a higher likelihood of taking return steps in the early morning. Using the temporally dynamic habitat selection coefficients and updated movement parameters, we can simulate by indexing the coefficients and parameters at time \\(\\tau\\) (4). In (4), we have shown the proposed steps from the current (blue) point, with the size of the circle representing the probability of choosing that step based on the habitat covariates. The red circle was the step that was selected, and forms the starting point for the next step.\n\n\n\n\nThe observed buffalo locations for a given hour are shown as the white locations, and the heatmap is the result of running many (dynamic) SSF simulations. There are locations from several individual buffalo in this landscape extent.\n   \n\n\n\nWe provide a script below is a walkthrough to build intuition around fitting models with harmonic interaction terms (harmonic regression).\nDynSSF_Walkthrough_Harmonics_and_selection_surfaces\nFor more scripts and data, please visit the GitHub repository: GitHub repo: https://github.com/swforrest/dynamic_SSF_sims\nCheck out the full paper here",
+    "crumbs": [
+      "Research",
+      "Dynamic SSF"
+    ]
+  },
+  {
+    "objectID": "research/2024_dynamic_ssf.html#description",
+    "href": "research/2024_dynamic_ssf.html#description",
+    "title": "Dynamic SSF",
+    "section": "",
+    "text": "In this paper we used harmonic terms to estimate temporally dynamic coefficients from step selection models, from which we simulated animal movement trajectories. The simulations with temporal dynamics gave informative hourly predictions of expected buffalo distribution (animations below), and also gave more accurate long-term predictions.\n\n\n\nConcept plot illustrating the procedure of model fitting with two pairs of harmonic terms, reconstructing the temporally dynamic coefficients, and generating temporally dynamic trajectories. The model is fitted with covariates interacting with the harmonic terms, where \\(s1\\), \\(s2\\), \\(c1\\) and \\(c2\\) in the model formula represent \\(\\sin(2\\pi \\tau / 24)\\), \\(\\sin(4\\pi \\tau / 24)\\), \\(\\cos(2\\pi \\tau / 24)\\) and \\(\\cos(4\\pi \\tau / 24)\\), respectively, and \\(\\tau\\) is the hour of the day where \\(\\tau \\in T\\), with \\(T\\) denoting 24 hours. Any covariates can be interacted with the harmonics, including quadratic terms, movement parameters, memory and social covariates. The coefficients are then reconstructed into time-varying coefficients (2a), and when linear and quadratic terms are interacted with harmonic terms, ‘selection surfaces’ can be created (2b). The movement parameters are ‘updated’ following the typical procedure [@Avgar2016-pb; @Fieberg2021-wx], although this is performed across \\(T\\) (3). In our case there were negative values for the von Mises concentration parameter, suggesting that the mean of the distribution changed from \\(0\\) to \\(\\pi\\), indicating a higher likelihood of taking return steps in the early morning. Using the temporally dynamic habitat selection coefficients and updated movement parameters, we can simulate by indexing the coefficients and parameters at time \\(\\tau\\) (4). In (4), we have shown the proposed steps from the current (blue) point, with the size of the circle representing the probability of choosing that step based on the habitat covariates. The red circle was the step that was selected, and forms the starting point for the next step.\n\n\n\n\nThe observed buffalo locations for a given hour are shown as the white locations, and the heatmap is the result of running many (dynamic) SSF simulations. There are locations from several individual buffalo in this landscape extent.\n   \n\n\n\nWe provide a script below is a walkthrough to build intuition around fitting models with harmonic interaction terms (harmonic regression).\nDynSSF_Walkthrough_Harmonics_and_selection_surfaces\nFor more scripts and data, please visit the GitHub repository: GitHub repo: https://github.com/swforrest/dynamic_SSF_sims\nCheck out the full paper here",
+    "crumbs": [
+      "Research",
+      "Dynamic SSF"
     ]
   },
   {
@@ -183,14 +159,31 @@
     ]
   },
   {
-    "objectID": "research.html",
-    "href": "research.html",
-    "title": "Research",
+    "objectID": "teaching.html",
+    "href": "teaching.html",
+    "title": "Teaching",
     "section": "",
-    "text": "Here’s an overview of some research projects that I have been involved with, mostly linking to published papers.",
+    "text": "I have been involved with various teaching throughout my time as a postgrad. I have been tutored or been a Teaching Fellow in Animal Biology, Ecology, Ecological Statistics, and Computational Mathematics.\nClick on the tabs to the left to see more of a description about each role.",
     "crumbs": [
-      "Research"
+      "Teaching"
     ]
+  },
+  {
+    "objectID": "posts/test_blog.html",
+    "href": "posts/test_blog.html",
+    "title": "Test blog post",
+    "section": "",
+    "text": "A test blog post.",
+    "crumbs": [
+      "Test blog post"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Scott Forrest",
+    "section": "",
+    "text": "Github\n  \n  \n    \n     LinkedIn\n  \n  \n    \n     Email\n  \n  \n     Scholar\n  \n  \n     ORCID\n  \n  \n     Bluesky\n  \n\n  \n  \nI’m a PhD candidate in Mathematical Sciences at the Queensland University of Technology (QUT) in Brisbane, Australia, and I am researching animal movement methods and applications. In my research I have explored space use and home range approaches, some hidden Markov modelling, and step selection functions and their extensions, and I am also interested in the application of machine learning to ecological problems. I work at the interface between developing methodology and applications to scientific and conservation questions, and I am fascinated by the decision-making processes that lead to animal movement, from the level of neurobiology to population dynamics.\n\n\n\nBefore getting into ecology, and the some of data analysis methods that underlie it, I studied a Bachelor of Engineering (Naval Architecture) with Honours at Flinders University in Adelaide, South Australia and the Australian Maritime College in Launceston, Tasmania. During this degree I thoroughly enjoyed the research endeavour through my Honours project with Gregor MacFarlane, titled: Ship-Generated Solitons and the Dynamic Vessel Response as a Function of Blockage. You can read the article here and watch a video of the research here.\nThe process of diving deeply into a topic, receiving valuable mentorship, and exploring the frontier of knowledge ultimately sparked my interest in a scientific career.\n\n\n\nWe used the AMC towing tank to create the specific conditions required to generate soliton waves, and then measured the vessel response under different conditions. The results were interesting and the project was a lot of fun\n\n\nFollowing my engineering degree I volunteered in the USA with Montana Fish, Wildlife and Parks with the Wolf Program, which led me towards a Master of Science in Wildlife Management at the University of Otago. For my MSc thesis with Phil Seddon, Mike Paulin and Mariano Rodríguez Recio, we GPS-tracked kākā (Nestor meridionalis) in Orokonui Ecosanctuary, Dunedin, New Zealand.\n\n\n\nA kākā fitted with a Lotek GPS-VHF device that uses the SWIFT fix algorithm. Photo: Charlotte Patterson.\n\n\nWe assessed the kākā’s space use and resource selection (via step selection functions), and how that changed throughout time. There were clear age-related patterns of both space use and resource selection, which correlated with higher mortality observations for younger kākā. The full thesis can be found here. The chapter about (dynamic) space use analyses has been published in Conservation Science and Practice and you can read the full paper here, or check out the description in the Research section of this website.\n\n\n\nWe used a sweeping window framework to assess how kākā space use changed throughout time, and how that differed between individuals of varying age.\n\n\nWe also assessed how the GPS devices that we used, which were Lotek PinPoint GPS VHF tags that used the SWIFT-fix snapshot algorithm were affected by vegetation and topography. This work was published in Animal Biotelemetry and you can read the full paper here, or check out the description in the Research section of this website.\nTo further explore the underlying models of animal movement, I am doing a PhD in Mathematical Sciences at the Queensland University of Technology (QUT) in collaboration with the Commonwealth Scientific and Industrial Research Organisation (CSIRO). My supervisors, Michael Bode and Christopher Drovandi at QUT, and Andrew Hoskins and Dan Pagendam at CSIRO, collaborators, Jonathan Potts and Conor Hassan, and I have delved further into step selection functions, particularly in relation to incorporating fine-scale temporal dynamics and using alternative approaches to represent and model the step selection process. We applied these models to water buffalo, which are an introduced and damaging species in northern Australia. CSIRO has led a project called ‘SpaceCows’, which has involved the data collection, analysis and management advice for water buffalo in the Northern Territory and feral cattle in Cape York, Queensland. I was lucky enough to head out and assist with the catching of water buffalo in the Northern Territory, which was quite a thrilling experience!\n\n\n\nThe water buffalo were mustered using helicopters and a series of mustering vehicles such as this one. This tagging protocol allows for the buffalo to be captured and released (with a GPS tag) in only a few minutes and reduces the need for anaesthetising the animals. Photo: Scott Forrest\n\n\nThe Australian Broadcasting Corporation (ABC) has covered the SpaceCows project in a news article and a Landline episode (I make an appearance for about 5 seconds from 2:43, even holding a clipboard…).\nThis work has been published in Ecography and you can read the full paper here, or check out the description in the Research section of this website.\n\nSome examples of the research that I have led are shown in the Research section of this website, but I have also collaborated on projects with a few other incredible species!\n\n\n\nNorthern quoll (Dasyurus hallucatus), Shingleback lizard (Tiliqua rugosa) and the unique and wonderful kākāpō (Strigops habroptilus)."
   },
   {
     "objectID": "teaching/biol112_animal-biology.html",
@@ -201,5 +194,12 @@
     "crumbs": [
       "Animal Biology"
     ]
+  },
+  {
+    "objectID": "cv.html",
+    "href": "cv.html",
+    "title": "CV",
+    "section": "",
+    "text": "Download PDF File\n   \n    Unable to display PDF file. Download instead."
   }
 ]
