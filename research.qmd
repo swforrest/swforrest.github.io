@@ -5,6 +5,8 @@ format: html
 
 Click on the tabs to the left to see some research projects that I have been involved with, mostly linking to published papers.
 
+To check out my full list of publications, see my [Google Scholar profile](https://scholar.google.com.au/citations?user=ECYMO3YAAAAJ&hl=en&oi=sra).
+
 Recently, my collaborators and I used deep learning to model animal movement in a step selection framework. You can check out the [preprint](https://www.biorxiv.org/content/10.1101/2025.02.13.638055v1) and the website with tutorials and code here: [https://swforrest.github.io/deepSSF/](https://swforrest.github.io/deepSSF/).
 
-To check out my full list of publications, see my [Google Scholar profile](https://scholar.google.com.au/citations?user=ECYMO3YAAAAJ&hl=en&oi=sra).
+![An animation of each step of a simulated trajectory from a deepSSF model, where the model is trained on Sentinel-2 satellite data and a slope layer, and generates habitat selection and movement (not shown here) predictions, which are combined into the probability of taking the next step. This next-step probability surface is sampled from (location of the white pixel) to become the next step in the trajectory.](images/simulation_S2.gif)

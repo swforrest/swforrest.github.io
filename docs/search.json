@@ -98,7 +98,7 @@
     "href": "research.html",
     "title": "Research",
     "section": "",
-    "text": "Click on the tabs to the left to see some research projects that I have been involved with, mostly linking to published papers.\nRecently, my collaborators and I used deep learning to model animal movement in a step selection framework. You can check out the preprint and the website with tutorials and code here: https://swforrest.github.io/deepSSF/.\nTo check out my full list of publications, see my Google Scholar profile.",
+    "text": "Click on the tabs to the left to see some research projects that I have been involved with, mostly linking to published papers.\nTo check out my full list of publications, see my Google Scholar profile.\nRecently, my collaborators and I used deep learning to model animal movement in a step selection framework. You can check out the preprint and the website with tutorials and code here: https://swforrest.github.io/deepSSF/.\n\n\n\nAn animation of each step of a simulated trajectory from a deepSSF model, where the model is trained on Sentinel-2 satellite data and a slope layer, and generates habitat selection and movement (not shown here) predictions, which are combined into the probability of taking the next step. This next-step probability surface is sampled from (location of the white pixel) to become the next step in the trajectory.",
     "crumbs": [
       "Research"
     ]

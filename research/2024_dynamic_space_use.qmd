@@ -13,7 +13,7 @@ A methodological contribution of this paper is the sweeping window dynamic space
 
 In the animation below the right panel is the area contained within the 95% contour of a dynamic Brownian Bridge Movement Model (dBBMM) occurrence distribution (OD). 
 
-![](..\images\all_ud_spatial_gif_20221115.gif)
+![](../images/all_ud_spatial_gif_20221115.gif)
 
 It isn't clear which are the young and old individuals, but we can plot them separately to illustrate the differences.
 
@@ -21,17 +21,17 @@ It isn't clear which are the young and old individuals, but we can plot them sep
 
 The older individuals had smaller home ranges and less dynamic space use.
 
-![](..\images\old_ud_viridis_gif_20221110.gif)
+![](../images/old_ud_viridis_gif_20221110.gif)
 
 ### Younger kākā (3 years of younger)
 
 The younger individuals had much larger home ranges which were more dynamic.
 
-![](..\images\young_ud_viridis_gif_20221110.gif)
+![](../images/young_ud_viridis_gif_20221110.gif)
 
 You might also spot that there are two individuals that overlap a lot in their space use, which change in a similar way through time. These two individuals were Orokonui-fledged juveniles (rather than captive-raised) that appear to display exploratory behaviour, which is largely outside of the fence in the latter part of the tracking period.
 
-![](..\images\t05_t08_ud_viridis_gif_20221110.gif)
+![](../images/t05_t08_ud_viridis_gif_20221110.gif)
 
 ***For more scripts and data, please visit the GitHub repository:***
 [GitHub repo: https://github.com/swforrest/Kaka_HR_DynamicSpaceUse](https://github.com/swforrest/Kaka_HR_DynamicSpaceUse)
